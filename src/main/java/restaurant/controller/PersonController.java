@@ -31,7 +31,6 @@ import restaurant.service.PersonService;
 * @author tianfushan (slndig.common.cn@siemens.com)
 */
 @Controller
-@RequestMapping("/person")
 public class PersonController {
 
     @Autowired
@@ -40,7 +39,7 @@ public class PersonController {
 
 
     @ResponseBody
-    @GetMapping(path = "/findAll", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(path = "/person/findAll", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     ResponseEntity<List<Person>> findAll() {
         try {
         	List<Person> MaterialPile = waiterService.findAll();
@@ -54,7 +53,7 @@ public class PersonController {
     
     @GetMapping(value="/hello")
 	public String test(){
-		return "hello";
+		return "diningManage";
 	}
 
 
