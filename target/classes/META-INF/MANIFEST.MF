@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: pro
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: z0042n4b
+Implementation-Vendor-Id: restaurant
+Build-Jdk: 1.8.0_211
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/pro
+Created-By: Maven Integration for Eclipse
+
