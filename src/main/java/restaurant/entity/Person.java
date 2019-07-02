@@ -1,71 +1,56 @@
 package restaurant.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-//import javax.validation.constraints.NotNull;
-import javax.persistence.Transient;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-//import org.hibernate.envers.NotAudited;
 
 import com.mysql.cj.jdbc.Blob;
 
-import javax.persistence.JoinColumn;
 /**
  *
- * @author tianfushan 
+ * @author tianfushan
  */
 @Entity
 @Table(name = "person")
-public class Person implements Serializable{
+public class Person implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    
-    @Id
-    @Basic(optional = false)
-    //@NotNull
-    @Column(name = "personId")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	private static final long serialVersionUID = 1L;
 
-    @Column(name = "personName")
-    private String personName;
+	@Id
+	@Basic(optional = false)
+	@Column(name = "personId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(name = "password")
-    private String password;
-    
-    @Column(name = "sex")
-    private int sex;
-    
-    @Column(name = "personTele")
-    private String personTele;
+	@Column(name = "personName")
+	private String personName;
 
-    @Column(name = "authority")
-    private int authority;
-    
-    @Column(name = "iswork")
-    private int iswork;
-   
-    @Column(name = "personState")
-    private int personState;
+	@Column(name = "password")
+	private String password;
 
-    @Column(name = "personPicture")
-    private Blob personPicture;
+	@Column(name = "sex")
+	private int sex;
+
+	@Column(name = "personTele")
+	private String personTele;
+
+	@Column(name = "authority")
+	private int authority;
+
+	@Column(name = "iswork")
+	private int iswork;
+
+	@Column(name = "personState")
+	private int personState;
+
+	@Column(name = "personPicture")
+	private Blob personPicture;
 
 	public Person() {
 		super();
@@ -157,5 +142,4 @@ public class Person implements Serializable{
 		this.personPicture = personPicture;
 	}
 
-	
 }
