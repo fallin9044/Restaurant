@@ -1,4 +1,4 @@
-package restaurant.service;
+package restaurant.service.waiterService;
 
 import java.util.List;
 import javax.transaction.Transactional;
