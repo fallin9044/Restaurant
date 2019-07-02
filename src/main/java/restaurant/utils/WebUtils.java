@@ -12,9 +12,9 @@ public class WebUtils {
 		System.out.println("页面判断是否登陆");
 		HttpSession httpSession = getSession();
 		String name = (String) httpSession.getAttribute("name");
-		if(name==null){
-			throw new PageValidationException();
-		}
+//		if(name==null){
+//			throw new PageValidationException();
+//		}
 	}
 	
 	public static Object getSessionAttribute(String name){
