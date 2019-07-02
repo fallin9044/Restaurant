@@ -1,6 +1,7 @@
 package restaurant.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -43,21 +44,21 @@ public class Person implements Serializable {
 	@Column(name = "authority")
 	private int authority;
 
-	@Column(name = "iswork")
-	private int iswork;
-
 	@Column(name = "personState")
 	private int personState;
 
 	@Column(name = "personPicture")
 	private Blob personPicture;
 
+	@Column(name = "personTime")
+	private Timestamp personTime;
+
 	public Person() {
 		super();
 	}
 
-	public Person(Long id, String personName, String password, int sex, String personTele, int authority, int iswork,
-			int personState, Blob personPicture) {
+	public Person(Long id, String personName, String password, int sex, String personTele, int authority,
+			int personState, Blob personPicture, Timestamp personTime) {
 		super();
 		this.id = id;
 		this.personName = personName;
@@ -65,9 +66,9 @@ public class Person implements Serializable {
 		this.sex = sex;
 		this.personTele = personTele;
 		this.authority = authority;
-		this.iswork = iswork;
 		this.personState = personState;
 		this.personPicture = personPicture;
+		this.personTime = personTime;
 	}
 
 	public Long getId() {
@@ -118,14 +119,6 @@ public class Person implements Serializable {
 		this.authority = authority;
 	}
 
-	public int getIswork() {
-		return iswork;
-	}
-
-	public void setIswork(int iswork) {
-		this.iswork = iswork;
-	}
-
 	public int getPersonState() {
 		return personState;
 	}
@@ -140,6 +133,14 @@ public class Person implements Serializable {
 
 	public void setPersonPicture(Blob personPicture) {
 		this.personPicture = personPicture;
+	}
+
+	public Timestamp getPersonTime() {
+		return personTime;
+	}
+
+	public void setPersonTime(Timestamp personTime) {
+		this.personTime = personTime;
 	}
 
 }
