@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PageValidationAOP {
 
-	@Pointcut("execution(* restaurant.controller.waiterController.TestController.*(..))")
+	@Pointcut("execution(* restaurant.controller.*.*.*(..))")
 	public void waiterControllerJointPointExpression() {
 	}
 
