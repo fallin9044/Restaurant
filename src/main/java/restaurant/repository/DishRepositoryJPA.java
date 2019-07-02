@@ -11,7 +11,6 @@ import restaurant.entity.Person;
 import java.util.List;
 
 
-public interface PersonRepositorySpring extends JpaRepository<Person, Long> {
-	@Query("select b from Person b where b.id = :id")
-	List<Person> getString(@Param("id") String id);
+public interface DishRepositoryJPA extends JpaRepository<Person, Long> {
+
 }

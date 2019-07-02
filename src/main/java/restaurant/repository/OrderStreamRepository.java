@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 */
 @Component
 @EnableJpaAuditing
-public interface PersonRepository extends PersonRepositoryJPA {
+public interface OrderStreamRepository extends PersonRepositoryJPA {
 
 }
