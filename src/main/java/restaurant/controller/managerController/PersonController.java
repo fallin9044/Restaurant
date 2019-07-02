@@ -1,4 +1,4 @@
-package restaurant.controller;
+package restaurant.controller.managerController;
 
 import java.io.Console;
 import java.util.Date;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import restaurant.entity.Person;
-import restaurant.service.PersonService;
+import restaurant.service.waiterService.PersonService;
 
 /**
 *
