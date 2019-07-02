@@ -1,6 +1,7 @@
 package restaurant.entity;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.sql.Timestamp;
 
 import javax.persistence.Basic;
@@ -11,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.mysql.cj.jdbc.Blob;
 
 /**
  *
