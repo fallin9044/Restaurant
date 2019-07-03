@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Manager Page</title>
 </head>
 <body>
 
-	<a href="index?username=snow&age=10">Test Request Param</a>
-	<br><br>
+	<h4>Manager Page!</h4>
 
 </body>
 </html>
