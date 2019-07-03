@@ -11,9 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class WebUtils {
 
-	public static boolean pageValidate() {
+	public static boolean pageValidate(HttpSession httpSession) {
 		System.out.println("页面判断是否登陆");
-		HttpSession httpSession = getSession();
 		Object personId = httpSession.getAttribute("personId");
 		if (personId == null) {
 			return false;

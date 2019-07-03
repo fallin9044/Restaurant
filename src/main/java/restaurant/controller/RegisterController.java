@@ -3,6 +3,8 @@ package restaurant.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +27,9 @@ public class RegisterController {
 	private static final String managerPage = "manager";
 	
 	@RequestMapping("/register")
-	public Object tryRegisterPage(){
-		if(WebUtils.pageValidate()){
-			int authority = (int) WebUtils.getSessionAttribute("authority");
+	public Object tryRegisterPage(HttpSession session){
+		if(WebUtils.pageValidate(session)){
+			int authority = (int) session.getAttribute("authority");
 			if(authority==2){
 				return waiterService.loadTableStatus();
 			}else{
@@ -39,10 +41,10 @@ public class RegisterController {
 	
 	@ResponseBody
 	@RequestMapping("/logging")
-	public Object loggingValidation(@RequestParam(value="name",required = false, defaultValue = "*****") String user,
+	public Object loggingValidation(HttpSession session,@RequestParam(value="name",required = false, defaultValue = "*****") String user,
 			@RequestParam(value="password",required = false, defaultValue = "*****") String password){
 		Map<String,Object> maps = new HashMap<>();
-		int result = loggingValidationService.findPerson(user, password);
+		int result = loggingValidationService.findPerson(session, user, password);
 		//2表示服务员，1表示经理
 		maps.put("authority", result);
 		return maps;

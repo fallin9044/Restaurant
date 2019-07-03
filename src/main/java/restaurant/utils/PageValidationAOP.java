@@ -1,5 +1,7 @@
 package restaurant.utils;
 
+import javax.servlet.http.HttpSession;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -23,8 +25,10 @@ private static final String registerPage = "register";
 
 		Object result = null;
 		System.out.println("page环绕通知");
+		Object[] args = pjd.getArgs();
+		HttpSession session = (HttpSession) args[0];
 		try {
-			if(!WebUtils.pageValidate()){
+			if(!WebUtils.pageValidate(session)){
 				throw new PageValidationException();
 			}
 			result = pjd.proceed();

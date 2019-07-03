@@ -5,9 +5,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
-<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/restaurant/css/bootstrap.min.css" />
+<script type="text/javascript" src="/restaurant/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/restaurant/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -15,6 +15,7 @@
   <li role="presentation" class="active"><a href="#">Home</a></li>
   <li role="presentation"><a href="#">Profile</a></li>
   <li role="presentation"><a href="#">Messages</a></li>
+  <input type="submit" id="waiter_exit_btn" value="Exit"/>
 </ul>
 	<div class="container">
 		<div class="row">
@@ -44,4 +45,22 @@
 		</div>
 	</div>
 </body>
+
+<script type="text/javascript">
+$(function(){ 
+	$("#waiter_exit_btn").click(function(){
+		
+		$.ajax({
+			url:"/restaurant/waiter/exit",
+			data:{},
+			type:"post",
+			success:function(msg){
+				window.location.href = "/restaurant/register";
+			},
+			error:function(XMLHttpRequest, textStatus, errorThrown) {
+			}
+		
+		});
+	});
+});</script>
 </html>
