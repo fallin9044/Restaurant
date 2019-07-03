@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 */
 @Component
 @EnableJpaAuditing
-public interface DishRepository extends PersonRepositoryJPA {
+public interface DishRepository extends DishRepositoryJPA {
 
 }

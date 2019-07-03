@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 */
 @Component
 @EnableJpaAuditing
-public interface DiningRepository extends PersonRepositoryJPA {
+public interface DiningRepository extends DiningRepositoryJPA {
 
 }

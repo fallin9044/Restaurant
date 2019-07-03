@@ -5,12 +5,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-
+import restaurant.entity.Dish;
 import restaurant.entity.Person;
 
 import java.util.List;
 
 
-public interface DishRepositoryJPA extends JpaRepository<Person, Long> {
+public interface DishRepositoryJPA extends JpaRepository<Dish, Long> {
 
 }
