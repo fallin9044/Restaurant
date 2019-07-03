@@ -13,7 +13,7 @@
 <body>
     
     <div class="background" >
-        
+        <!-- 导航栏 -->
         <div class="header" >
             <ul class="nav nav-pills">、
                 <li role="presentation" class="list active"><a href="manage_index.html">服务员管理</a></li>
@@ -23,15 +23,17 @@
                 <li role="presentation" class="list"><a href="manage_order.html">流水管理</a></li>
             </ul>
         </div>
+        <!-- 员工表格  -->
         <div class="sheet">
-            
             <table class="table table-striped">
+            <caption><h3 align="center">员工管理</h3></caption>
                 <thead>
                     <tr>
                         <th>Waiter-ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Grade</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,40 +42,43 @@
                         <td>Rammohan </td>
                         <td>Reddy</td>
                         <td>A+</td>
+                        <td><button type="button" class="btn btn-default"><a>edit</a></button></td>
                     </tr>
                     <tr>
                         <td>002</td>
                         <td>Smita</td>
                         <td>Pallod</td>
                         <td>A</td>
+                        <td><button type="button" class="btn btn-default"><a>edit</a></button></td>
                     </tr>
                     <tr>
                         <td>003</td>
                         <td>Rabindranath</td>
                         <td>Sen</td>
                         <td>A+</td>
+                        <td><button type="button" class="btn btn-default"><a>edit</a></button></td>
                     </tr>
                 </tbody>
             </table>
-        
-        
+            <!-- 翻页 -->
+             <div align="right">
+                <ul class="pagination">
+                   <li><a href="#">&laquo;</a></li>
+                   <li><a href="#">1</a></li>
+                   <li><a href="#">2</a></li>
+                   <li><a href="#">3</a></li>
+                   <li><a href="#">4</a></li>
+                   <li><a href="#">5</a></li>
+                   <li><a href="#">&raquo;</a></li>
+                </ul>
+              </div> 
         </div>
-    
-    
+        
+        <!--页尾-->
         <div class="footer" >
             <p align="center" style="margin: 0">wychen1234567890</p> 
         </div>
+        
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 </body>
 </html>
