@@ -23,7 +23,7 @@ public class Dining implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long tableId;
 
-	@Column(name = "tableName")
+	@Column(name = "tableNum")
 	private int tableNum;
 
 	@Column(name = "tableState")
