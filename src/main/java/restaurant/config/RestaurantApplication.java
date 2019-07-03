@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  *
- * @author huchaozhe (chaozhe.hu@siemens.com)
+ * @author 田付山
  */
 @SpringBootApplication
 @EnableAutoConfiguration

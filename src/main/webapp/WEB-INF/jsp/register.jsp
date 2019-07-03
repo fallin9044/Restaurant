@@ -40,7 +40,7 @@ $(function(){
 				console.log(msg);
 				if (msg.authority != -1) {
 					if(msg.authority == 2){
-						window.location.href = "waiter";
+						window.location.href = "waiter/tableStatus";
 					}else{
 						window.location.href = "manager";
 					}

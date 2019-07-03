@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import restaurant.service.LoggingValidationService;
+import restaurant.service.waiterService.WaiterService;
 import restaurant.utils.WebUtils;
 
 @Controller
@@ -17,9 +18,10 @@ public class RegisterController {
 
 	@Autowired
 	private LoggingValidationService loggingValidationService;
+	@Autowired
+	WaiterService waiterService;
 	
 	private static final String registerPage = "register";
-	private static final String waiterPage = "waiter";
 	private static final String managerPage = "manager";
 	
 	@RequestMapping("/register")
@@ -27,7 +29,7 @@ public class RegisterController {
 		if(WebUtils.pageValidate()){
 			int authority = (int) WebUtils.getSessionAttribute("authority");
 			if(authority==2){
-				return waiterPage;
+				return waiterService.loadTableStatus();
 			}else{
 				return managerPage;
 			}
@@ -44,11 +46,6 @@ public class RegisterController {
 		//2表示服务员，1表示经理
 		maps.put("authority", result);
 		return maps;
-	}
-	
-	@RequestMapping("/waiter")
-	public Object waiterPage(){
-		return waiterPage;
 	}
 	
 }
