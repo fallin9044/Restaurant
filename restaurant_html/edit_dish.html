@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>修改菜单</title>
+    
+    <link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!-- 顶部导航栏  -->
+    <div class="background" > 
+        <div class="header" >
+            <ul class="nav nav-pills">、
+                <li role="presentation" class="list"><a href="manage_index.html">服务员管理</a></li>
+                <li role="presentation" class="list"><a href="manage_check.html">考勤管理</a></li>
+                <li role="presentation" class="list  active"><a href="manage_advance.html">预定管理</a></li>
+                <li role="presentation" class="list"><a href="manage_dish.html">菜品管理</a></li>
+                <li role="presentation" class="list"><a href="manage_order.html">流水管理</a></li>
+            </ul>
+        </div>
+   
+    <!-- 预定管理表格 -->
+		<div class="sheet">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Waiter-ID</th>
+						<th>Time of appointment</th>
+						<th>Arrive Time</th>
+						<th>Number</th>
+						<th>In</th>
+						<th>Cancel</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>001</td>
+						<th>2019-07-04 19:00:00</th>
+						<th>2019-07-04 20:00:00</th>
+						<th>5</th>
+						<th><button class="btn btn-success">In</button></th>
+						<th><button class="btn btn-warning">Cancel</button></th>
+					</tr>
+					<tr>
+						<td>001</td>
+						<th>2019-07-04 19:00:00</th>
+						<th>2019-07-05 12:00:00</th>
+						<th>1</th>
+						<th><button class="btn btn-success">In</button></th>
+						<th><button class="btn btn-warning">Cancel</button></th>
+					</tr>
+					<tr>
+						<td>002</td>
+						<th>2019-07-05 19:00:00</th>
+						<th>2019-07-05 20:00:00</th>
+						<th>10</th>
+						<th><button class="btn btn-success">In</button></th>
+						<th><button class="btn btn-warning">Cancel</button></th>
+					</tr>
+				</tbody>
+			</table>
+			<!-- 翻页 -->
+			<div align="right">
+				<ul class="pagination">
+					<li><a href="#">&laquo;</a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">&raquo;</a></li>
+				</ul>
+			</div>
+		</div>
+    
+    
+     <!-- 页尾   -->
+        <div class="footer" >
+            <p align="center" style="margin: 0">wychen1234567890</p> 
+        </div>
+        
+    </div>
+     
+</body>
+</html>
