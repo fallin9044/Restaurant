@@ -2,14 +2,14 @@ package restaurant.service;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import restaurant.entity.Person;
 import restaurant.repository.PersonRepository;
-import restaurant.utils.WebUtils;
 
 @Service
 public class LoggingValidationService {
@@ -18,7 +18,7 @@ public class LoggingValidationService {
     PersonRepository personRepository;
 	
 	@Transactional
-	public int findPerson(String name,String password){
+	public int findPerson(HttpSession session,String name,String password){
 		//数据库查询用户
 		List<Person> persons = personRepository.findByNamePassword(name, password);
 		if(persons.isEmpty()){
@@ -27,9 +27,9 @@ public class LoggingValidationService {
 		//用户权限
 		int result = persons.get(0).getAuthority();
 		//设置session
-		WebUtils.setSessionAttribute("personId", persons.get(0).getId());
+		session.setAttribute("personId", persons.get(0).getId());
 		//设置权限
-		WebUtils.setSessionAttribute("authority", persons.get(0).getAuthority());
+		session.setAttribute("authority", persons.get(0).getAuthority());
 		if(result==2){
 			//服务员设置工作状态
 			personRepository.waiterIsWork(persons.get(0).getId());

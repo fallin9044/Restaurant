@@ -18,5 +18,9 @@ public interface PersonRepositoryJPA extends JpaRepository<Person, Long> {
 	@Modifying
 	@Query(value = "update Person b set b.personState=1 where b.id = :id")
 	public void waiterIsWork(@Param("id") long id);
+	
+	@Modifying
+	@Query(value = "update Person b set b.personState=0 where b.id = :id")
+	public void waiterIsNotWork(@Param("id") long id);
 
 }

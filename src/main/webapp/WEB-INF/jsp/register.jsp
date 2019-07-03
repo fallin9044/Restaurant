@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script src="js/jquery-3.4.1.min.js"></script>
+<script src="/restaurant/js/jquery-3.4.1.min.js"></script>
 <title>Register Page</title>
 </head>
 <body>
@@ -33,16 +33,16 @@ $(function(){
 		}
 		
 		$.ajax({
-			url:"logging",
+			url:"/restaurant/logging",
 			data:{name:name,password:password},
 			type:"post",
 			success:function(msg){
 				console.log(msg);
 				if (msg.authority != -1) {
 					if(msg.authority == 2){
-						window.location.href = "waiter/tableStatus";
+						window.location.href = "/restaurant/waiter/tableStatus";
 					}else{
-						window.location.href = "manager";
+						window.location.href = "/restaurant/manager";
 					}
 				} else {
 					alert("账号密码错误！"); 
