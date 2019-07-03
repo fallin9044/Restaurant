@@ -1,10 +1,13 @@
 package restaurant.utils;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 public class WebUtils {
 
@@ -44,5 +47,14 @@ public class WebUtils {
 		ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 		return attrs.getRequest();
 	}
+	
+
+
+	public static Object setModelAndView(String viewname, Map<String, Object> map) {
+		ModelAndView mav = new ModelAndView(viewname);
+		mav.addAllObjects(map);
+		return mav;
+	}
+
 
 }
