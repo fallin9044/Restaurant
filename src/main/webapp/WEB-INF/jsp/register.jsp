@@ -28,7 +28,7 @@
                 <div class="col-md-offset-1 col-md-10">
                     <div class="form-horizontal">
                         <span class="heading">
-                            <img src="/restaurant/images/logo.jpg" style="width:90%;margin-top: 2%;">
+                            <img src="/restaurant/images/w-logo.jpg" style="width:70%;margin-top: 2%;">
                         </span>
                         <div class="form-group">
                             <input type="text" id="name" class="form-control"  placeholder="账号">

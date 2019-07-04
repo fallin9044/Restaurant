@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import restaurant.entity.Dining;
 import restaurant.repository.DiningRepository;
+import restaurant.repository.DishRepository;
+import restaurant.repository.MenuRepository;
 import restaurant.repository.PersonRepository;
 import restaurant.utils.WebUtils;
 
@@ -21,13 +23,29 @@ public class WaiterService  {
     
     @Autowired
     DiningRepository diningDAO;
+    
     @Autowired
     PersonRepository personRepository;
+    
+    @Autowired
+    MenuRepository menuRepository;
+    
+    @Autowired
+    DishRepository dishRepository;
 
 	public Object loadTableStatus() {
 		Map<String,Object> map= new HashMap<String, Object>();
 		map.put("tablestatus",diningDAO.findAll());
 		return 	WebUtils.setModelAndView("tableStatus", map);
+	}
+	
+	
+	public Object loadOrderDish(Long tableId) {
+		Map<String,Object> map= new HashMap<String, Object>();
+		map.put("existingMenu",menuRepository.findByTableId(tableId));
+		map.put("dishes", dishRepository.findAll());
+		return WebUtils.setModelAndView("orderDish", map);
+		//return map;
 	}
 	
 	@Transactional

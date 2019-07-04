@@ -13,4 +13,5 @@ import java.util.List;
 
 public interface MenuRepositoryJPA extends JpaRepository<Menu, Long> {
 
+	List<Menu> findByTableId(long id);
 }
