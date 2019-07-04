@@ -13,4 +13,8 @@ import java.util.List;
 
 public interface DiningRepositoryJPA extends JpaRepository<Dining, Long> {
 
+	@Modifying
+	@Query(value = "update Dining b set b.tableState=1 where b.tableId = :id")
+	public void takeTable(@Param("id") long id);
+	
 }

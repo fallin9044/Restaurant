@@ -33,7 +33,7 @@ public class Dish implements Serializable {
 	private String dishDesc;
 
 	@Column(name = "dishPicture")
-	private Blob dishPicture;
+	private String dishPicture;
 
 	@Column(name = "isrecommend")
 	private int isrecommend;
@@ -42,7 +42,7 @@ public class Dish implements Serializable {
 		super();
 	}
 
-	public Dish(long dishId, String dishName, int dishPrice, String dishDesc, Blob dishPicture, int isrecommend) {
+	public Dish(long dishId, String dishName, int dishPrice, String dishDesc, String dishPicture, int isrecommend) {
 		super();
 		this.dishId = dishId;
 		this.dishName = dishName;
@@ -84,11 +84,11 @@ public class Dish implements Serializable {
 		this.dishDesc = dishDesc;
 	}
 
-	public Blob getDishPicture() {
+	public String getDishPicture() {
 		return dishPicture;
 	}
 
-	public void setDishPicture(Blob dishPicture) {
+	public void setDishPicture(String dishPicture) {
 		this.dishPicture = dishPicture;
 	}
 

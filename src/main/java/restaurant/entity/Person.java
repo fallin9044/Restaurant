@@ -48,7 +48,7 @@ public class Person implements Serializable {
 	private int personState;
 
 	@Column(name = "personPicture")
-	private Blob personPicture;
+	private String personPicture;
 
 	@Column(name = "personTime")
 	private Timestamp personTime;
@@ -58,7 +58,7 @@ public class Person implements Serializable {
 	}
 
 	public Person(Long id, String personName, String password, int sex, String personTele, int authority,
-			int personState, Blob personPicture, Timestamp personTime) {
+			int personState, String personPicture, Timestamp personTime) {
 		super();
 		this.id = id;
 		this.personName = personName;
@@ -127,11 +127,11 @@ public class Person implements Serializable {
 		this.personState = personState;
 	}
 
-	public Blob getPersonPicture() {
+	public String getPersonPicture() {
 		return personPicture;
 	}
 
-	public void setPersonPicture(Blob personPicture) {
+	public void setPersonPicture(String personPicture) {
 		this.personPicture = personPicture;
 	}
 
