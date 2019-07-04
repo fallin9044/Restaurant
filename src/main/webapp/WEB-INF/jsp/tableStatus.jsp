@@ -25,18 +25,25 @@
 				<thead>
 					<tr>
 						<th>编号</th>
+						<th>几人桌</th>
 						<th>状态</th>
 						<th>操作</th>
+						
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${requestScope.tablestatus}" var="table">
 						<tr>
+							<td>${table.tableId}</td>
 							<td>${table.tableNum}</td>
 							<c:if test="${table.tableState == '0'}">
 								<td>空闲</td>
+								<td onclick=getTableNum(this)><input type="submit" value="占座"/></td>
 							</c:if>
-							<td>${table.tableNum}</td>
+							<c:if test="${table.tableState != '0'}">
+								<td>在吃</td>
+								<td onclick=getTableNum(this)><input type="submit" value="点餐"/></td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -45,6 +52,37 @@
 		</div>
 	</div>
 </body>
+
+<script type="text/javascript">
+function getTableNum(element){
+
+	var tableId = $(element.parentElement).children("td").eq(0).html();
+	var tableState = $(element.parentElement).children("td").eq(2).html();
+	
+	if(tableState=="空闲"){
+		$.ajax({
+			url:"/restaurant/waiter/takeTable",
+			data:{tableId:tableId},
+			type:"post",
+			success:function(msg){
+				console.log(msg);
+				if (msg.flag == -1) {
+					alert("已经有人占座！"); 
+				} else {
+					alert("占座成功！"); 
+				}
+				window.location.href = "/restaurant/waiter/tableStatus";
+			},
+			error:function(XMLHttpRequest, textStatus, errorThrown) {
+			}
+		
+		});
+		
+	}else{
+		
+	}
+	
+}</script>
 
 <script type="text/javascript">
 $(function(){ 

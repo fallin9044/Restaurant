@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class PageValidationAOP {
-
+//shiro
 private static final String registerPage = "register";
 	
 	@Pointcut("execution(* restaurant.controller.*.*.*(..))")
