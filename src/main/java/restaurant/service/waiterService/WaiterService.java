@@ -2,13 +2,16 @@ package restaurant.service.waiterService;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import restaurant.entity.Dining;
 import restaurant.repository.DiningRepository;
 import restaurant.repository.PersonRepository;
 import restaurant.utils.WebUtils;
@@ -33,7 +36,17 @@ public class WaiterService  {
 		personRepository.waiterIsNotWork(id);
 		session.setAttribute("personId", null);
 		session.setAttribute("authority", null);
-		System.out.println("LLLLLLLLLLLLLLLLLLL");
 	}
 
+	@Transactional(isolation=Isolation.SERIALIZABLE)
+	public boolean takeTable(long tableId){
+		Dining dining = diningDAO.findById(tableId).get();
+		if(dining.getTableState()==0){
+			diningDAO.takeTable(tableId);
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 }
