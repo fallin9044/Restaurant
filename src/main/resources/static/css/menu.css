@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/* CSS Document */
+#left{
+    height:100%;
+    background-color: beige;
+    position:absolute;
+}
+
+#left_top{
+    margin-top:2%;
+    height:20%;
+}
+
+#left_bottom{
+    margin-top:10%;
+    height:70%;
+}
+
+#right{
+    height:100%;
+    position:absolute;
+}
+#right_top{
+    height:25%;
+    width:98%;
+    position:absolute;
+    
+}
+
+#right_mid{
+    height: 70%;
+    margin-top: 17%;
+    background-color: aliceblue;   
+    position:absolute;
+}
+
+#right_bottom{
+    height:3%;
+    width:97%;
+    bottom:0;
+    background-color:cornsilk;
+    position:absolute;
+}
+
+
+
+
+.lunbo{
+    width:98%; 
+    height:auto;
+    position:absolute;
+}

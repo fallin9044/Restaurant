@@ -4,21 +4,52 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script src="/restaurant/js/jquery-3.4.1.min.js"></script>
-<title>Register Page</title>
+<title>Waiter_Welcome_LogIn</title>
+	
+	<link rel="stylesheet" href="/restaurant/css/main.css">
+	<link rel="stylesheet" href="/restaurant/css/bootstrap.min.css">
+	
+	<script src="/restaurant/js/jquery-3.4.1.min.js"></script>
+	<script src="/restaurant/js/bootstrap.min.js"></script>
+    <script src="/restaurant/js/prefixfree.min.js"></script>
 </head>
 <body>
-
-	username: <input type="text" name="name" id="name"/>
-	<br><br>
-	password: <input type="password" name="password" id="password"/>
-	<br><br>
-	<input type="submit" id="user_logging_btn" value="Submit"/>
+<div style="height:100%;width: 100%;position:absolute">
+		<img id = 'photo' class='photo'  src="/restaurant/images/welcome1.jpg" alt="" />
+		<img id = 'photo' class='photo'  src="/restaurant/images/welcome2.jpg" alt="" />
+        <img id = 'photo' class='photo'  src="/restaurant/images/welcome3.jpg" alt="" />
+        <img id = 'photo' class='photo'  src="/restaurant/images/welcome4.jpeg" alt="" />
+	</div>
+    
+    
+    <div class="col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4" style="margin-top: 6%;">
+        
+            
+                <div class="col-md-offset-1 col-md-10">
+                    <div class="form-horizontal">
+                        <span class="heading">
+                            <img src="/restaurant/images/logo.jpg" style="width:90%;margin-top: 2%;">
+                        </span>
+                        <div class="form-group">
+                            <input type="text" id="name" class="form-control"  placeholder="账号">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="form-group help">
+                            <input type="password" id="password" class="form-control" placeholder="密码">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                        <div >
+                            <button id="user_logging_btn" class="btn btn-default" style="background-color:#E70012">登录</button>
+                        </div>
+                    </div>
+                </div>
+            
+        
+    </div>
 
 </body>
 
 <script type="text/javascript">
-$(function(){ 
 	$("#user_logging_btn").click(function(){
 	
 		var name = $("#name").val();
@@ -54,5 +85,5 @@ $(function(){
 		
 		});
 	});
-});</script>
+</script>
 </html>
