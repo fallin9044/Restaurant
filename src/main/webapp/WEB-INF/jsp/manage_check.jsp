@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false"%>
 <!doctype html>
 <html>
 <head>
@@ -36,41 +40,27 @@
 			<caption><h3 align="center">签到管理</h3></caption>
 				<thead>
 					<tr>
-						<th>Waiter-ID</th>
-						<th>Time</th>
-						<th>Date</th>
-						<th>Clork or Not</th>
-						<th>Punch</th>
+						<th>服务员编号</th>
+						<th>服务员姓名</th>
+						<th>打卡日期</th>
+						<th>打卡时间</th>
+						<th>是否打卡</th>
 					</tr>
 				</thead>
 				<tbody>
+					
+					<c:forEach items="${requestScope.persons}" var="person">
 					<tr>
-						<td>001</td>
-						<td>8:10:11</td>
-						<td>2019-07-03</td>
+					    <td>${person.person_id}</td>
+						<td>${person.person_name}</td>
+						
+						<td>${}</td>
 						<td>Yes</td>
-						<td><button type="button" class="btn btn-default">
-								<a href="#">P</a>
-							</button></td>
+						<td></td>
 					</tr>
-					<tr>
-						<td>001</td>
-						<td>8:10:12</td>
-						<td>2019-07-03</td>
-						<td>Yes</td>
-						<td><button type="button" class="btn btn-default">
-								<a href="#">P</a>
-							</button></td>
-					</tr>
-					<tr>
-						<td>001</td>
-						<td>8:10:13</td>
-						<td>2019-07-03</td>
-						<td>No</td>
-						<td><button type="button" class="btn btn-default">
-								<a href="#">P</a>
-							</button></td>
-					</tr>
+				    </c:forEach>
+						
+	
 				</tbody>
 			</table>
 			<!-- 翻页 -->
@@ -96,3 +86,4 @@
 	</div>
 </body>
 </html>
+
