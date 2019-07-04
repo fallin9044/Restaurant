@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>餐厅经理主页</title>
+<title>餐厅经理点菜管理</title>
     
     <link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -21,72 +21,70 @@
                 <li role="presentation" class="list"><a href="manage_order.html">流水管理</a></li>
             </ul>
         </div>
-     
-     <!-- 换行 -->
-      <br/><br/><br/>
-      
-      <!--添加新菜和删除菜按钮组
-      <div align="right">
-      <div class="btn-group">
-        <button type="button" class="btn btn-success"><a href="add_dish.html">Add New Dish</a></button>
-        <button type="button" class="btn btn-danger">Delete Dish</button>
-        <button type="button" class="btn btn-info">Other</button>
-      </div>
-       </div>-->
        
        <!-- 菜单管理表格 -->
 		<div class="sheet">
-			<table class="table table-striped">
-			<caption><h3 align="center">菜单管理</h3></caption>
-				<thead>
-					<tr>
-						<th>Dish-ID</th>
-						<th>Name</th>
-						<th>Price</th>
-						<th>Recommend</th>
-						<th>Edit</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>1001</th>
-						<th>Braised fish in soy sauce</th>
-						<th>$ 20</th>
-						<th><button class="btn btn-primary">R</button></th>
-						<th><button class="btn btn-info">Edit</button></th>
-					</tr>
-					<tr>
-						<th>1002</th>
-						<th>Spinach</th>
-						<th>$ 5</th>
-						<th><button class="btn btn-primary">R</button></th>
-						<th><button class="btn btn-info">Edit</button></th>
-					</tr>
-					<tr>
-						<th>1003</th>
-						<th>Roast Chiken</th>
-						<th>$ 18</th>
-						<th><button class="btn btn-primary">R</button></th>
-						<th><button class="btn btn-info">Edit</button></th>
-					</tr>
-				</tbody>
-			</table>
-			<!-- 翻页 -->
-			<div align="right">
-				<ul class="pagination">
-					<li><a href="#">&laquo;</a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">&raquo;</a></li>
-				</ul>
-			</div>
+            <div class="title">
+                <h1>菜品名单</h1>
+                <button type="button" class="btn btn-default">
+                    <a href="add_dish.html" style="color:black;">添加菜品</a>
+                </button>
+            </div>
+        
+            <div>
+                <table class="table table-striped" style="text-align: center;">
+                
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">菜品ID</th>
+                            <th style="text-align: center;">菜品名称</th>
+                            <th style="text-align: center;">菜品价格</th>
+                            <th style="text-align: center;">是否推荐</th>
+                            <th style="text-align: center;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1001</td>
+                            <td>Braised fish in soy sauce</td>
+                            <td>$ 20</td>
+                            <td><button class="btn btn-success">R</button>
+                                <button class="btn btn-warning">C</button></td>
+                            <td><button class="btn btn-default">
+                                <a href="edit_dish.html" style="color:black;">Edit</a>
+                                </button>
+                                <button class="btn btn-default">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>1002</td>
+                            <td>Spinach</td>
+                            <td>$ 5</td>
+                            <td><button class="btn btn-success">R</button>
+                                <button class="btn btn-warning">C</button></td>
+                            <td><button class="btn btn-default">
+                                <a href="edit_dish.html" style="color:black;">Edit</a></button>
+                                <button class="btn btn-default">Delete</button></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                <!-- 翻页 -->
+                <div align="center">
+                    <ul class="pagination">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+            </div>
 		</div>   
      
         <div class="footer" >
-            <p align="center" style="margin: 0">wychen1234567890</p> 
+            <p align="center">西安"海上捞"空中花园餐厅 2019 Powered by wychen</p>
         </div>
 
     </div>

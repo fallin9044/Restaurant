@@ -23,7 +23,7 @@
 }
 
 img:nth-child(1) {
-    animation-delay: 0s;
+    animation-delay: 12s;
 }
 img:nth-child(2) {
     animation-delay: 8s;
@@ -43,7 +43,7 @@ img:nth-child(4) {
 }
 .header{
     position: absolute;
-    background-color: beige;
+    background-color:antiquewhite;
     top: 0;
     width:100%;
     height:8%;
@@ -54,7 +54,6 @@ img:nth-child(4) {
     padding-top: 0.7%;
     margin-left:10%;
     margin-right:10%;
-	font-size: 16px;
 }
 
 li{
@@ -63,22 +62,44 @@ li{
     
 }
 .sheet{
-    margin:7% 10% 10% 10%;
+    height: 75%;
+    margin:7% 10% 5% 10%;
+}
+.table{
+    font-size: 17px;
+}
+.mid-body{
+    width:80%;
+    height:70%;
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top:7%;
+    overflow-y:auto;
+    background-color: darkblue;
 }
 .footer{
     position: absolute;
     bottom: 0;
     width:100%;
-    height:5%;
-    background-color: beige;
+    height:3%;
+    font-weight: 500;
+    background-color:antiquewhite;
+    
+}
+.title{
+    height:17%;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
     
 }
 
-
 /********************************************************************************************************/
+
+
 /***************************************************登录框************************************************/
     .form-bg{
-            padding-left: 0%;
+            padding-left: 
         }
 	.form-horizontal{
 		background:white;
@@ -88,10 +109,7 @@ li{
 	}
 	.form-horizontal .heading{
 		display: block;
-		font-size: 35px;
-		font-weight: 700;
-		padding: 12% 0;
-		border-bottom: 1px solid #f0f0f0;
+		margin: 5% 0;
 		margin-bottom: 5%;
 	}
 	.form-horizontal .form-group{
@@ -202,6 +220,5 @@ li{
 		.form-horizontal .btn{
 			padding: 10px 20px;
 		}
-		
 	}
 /********************************************************************************************************************/

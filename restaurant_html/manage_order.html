@@ -2,17 +2,20 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>餐厅经理主页</title>
+<title>餐厅经理流水管理</title>
     
     <link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
     
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    
 </head>
 
 <body>
     
-    <div class="background" >
+    <div class="background">
         
         <div class="header" >
             <ul class="nav nav-pills">、
@@ -25,16 +28,25 @@
         </div>
     
         <!-- 流水管理表格  -->
+        
         <div class="sheet">
-            <table class="table table-striped">
-            <caption><h3 alialign="center">流水账单管理</h3></caption>
+            <div class="title">
+                <h1>服务员名单</h1>
+                <button type="button" class="btn btn-default">今日</button>
+                <button type="button" class="btn btn-default">最近一周</button>
+                <button type="button" class="btn btn-default">最近一月</button>
+            </div>
+            
+            
+            <div>
+            <table class="table table-striped" style="text-align: center;">
                 <thead>
                     <tr>
-                        <th>Order-ID</th>
-                        <th>Waiter-ID</th>
-                        <th>Table-ID</th>
-                        <th>Date/Time</th>
-                        <th>Income</th>
+                        <th style="text-align: center;">订单ID</th>
+                        <th style="text-align: center;">服务员名字</th>
+                        <th style="text-align: center;">桌号</th>
+                        <th style="text-align: center;">日期/时间</th>
+                        <th style="text-align: center;">花销</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,7 +74,7 @@
                 </tbody>
             </table>
             <!-- 翻页 -->
-             <div align="right">
+             <div align="center">
                 <ul class="pagination">
                    <li><a href="#">&laquo;</a></li>
                    <li><a href="#">1</a></li>
@@ -73,21 +85,14 @@
                    <li><a href="#">&raquo;</a></li>
                 </ul>
               </div> 
+                </div>
         </div>
+        
     
         <div class="footer" >
-            <p align="center" style="margin: 0">wychen1234567890</p> 
+            <p align="center">西安"海上捞"空中花园餐厅 2019 Powered by wychen</p>
         </div>
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 </body>
