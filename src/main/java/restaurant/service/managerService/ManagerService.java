@@ -12,7 +12,9 @@ import java.util.StringTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import restaurant.entity.Dish;
 import restaurant.entity.Person;
+import restaurant.repository.DishRepository;
 import restaurant.repository.PersonRepository;
 import restaurant.utils.WebUtils;
 @Service
@@ -20,7 +22,85 @@ public class ManagerService {
 	
 	@Autowired
 	PersonRepository personDAO;
-
+	
+	@Autowired
+	DishRepository dishDAO;
+	
+	/**************************************************/
+	/***
+	 * 添加一个新菜(Johnieh)
+	 * @author Nie Jun
+	 * @param name 菜名
+	 * @param price 价格
+	 * @param desc 描述
+	 * @param pic 图片
+	 * @param rec 推荐
+	 */
+	public void addNewDish(String name,int price,String desc,String pic,int rec)
+	{
+        Dish d = new Dish();
+        d.setDishName(name);
+        d.setDishPrice(price);
+        d.setDishDesc(desc);
+        d.setDishPicture(pic);
+        d.setIsrecommend(rec);
+        dishDAO.save(d);
+	}
+	
+	/**
+	 * 根据Id删除一个菜
+	 * @param id
+	 * @author Nie Jun
+	 */
+	public void deleteDish(int id)
+	{
+	   dishDAO.DeleteById(id);
+	}
+	
+	/**
+	 * 修改一个菜品的相关信息
+	 * @author Nie Jun
+	 * @param id 菜品Id
+	 * @param d 菜品被更新
+	 */
+	public void updateDish(long id,Dish d)
+	{
+	     	dishDAO.updateDish(id,d.getDishName(),d.getDishPrice(),d.getDishDesc(),d.getDishPicture(),d.getIsrecommend());
+	}
+	
+	/**
+	 * 通过菜名的模糊搜索得到相应列表 
+	 * @author Nie Jun
+	 * @param name
+	 * @return dish类的list
+	 */
+	public List<Dish> findDishs(String name)
+	{
+		List<Dish> d_list = dishDAO.selectByName(name);
+		return d_list;
+	}
+	/**
+	 * 通过ID找到菜品
+	 * @author Nie Jun
+	 * @param id
+	 * @return 一个菜品实体
+	 */
+	public Dish findDish(long id)
+	{
+		return dishDAO.SelectByID(id);
+	}
+	
+	/**
+	 * 修改推荐菜单
+	 * @author Nie Jun (1状态推荐，2状态不推荐)
+	 * @param rec
+	 */
+	public void setRecommend(int rec)
+	{
+		dishDAO.updateRecom(rec);
+	}
+	
+	/*************************************************/
 	
 	public Object getPerson(){
 		//person
