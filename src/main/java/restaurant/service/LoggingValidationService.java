@@ -30,10 +30,10 @@ public class LoggingValidationService {
 		session.setAttribute("personId", persons.get(0).getId());
 		//设置权限
 		session.setAttribute("authority", persons.get(0).getAuthority());
-		if(result==2){
-			//服务员设置工作状态
-			personRepository.waiterIsWork(persons.get(0).getId());
-		}
+//		if(result==2){
+//			//服务员设置工作状态
+//			personRepository.waiterIsWork(persons.get(0).getId());
+//		}
 		//返回用户权限
 		return result;
 	}

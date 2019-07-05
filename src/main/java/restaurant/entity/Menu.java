@@ -30,17 +30,35 @@ public class Menu implements Serializable {
 
 	@Column(name = "dishState")
 	private int dishState;
+	
+	@Column(name ="dishNumber")
+	private int dishNumber;
+
+	public int getDishNumber() {
+		return dishNumber;
+	}
+
+	public void setDishNumber(int dishNumber) {
+		this.dishNumber = dishNumber;
+	}
+
+	@Override
+	public String toString() {
+		return "{\"menuId\":" + menuId + ",\"dishId\":" + dishId + ",\"tableId\":" + tableId + ",\"dishState\":" + dishState
+				+ ",\"dishNumber\":" + dishNumber + "}";
+	}
 
 	public Menu() {
 		super();
 	}
 
-	public Menu(long menuId, long dishId, long tableId, int dishState) {
+	public Menu(long menuId, long dishId, long tableId, int dishState, int dishNumber) {
 		super();
 		this.menuId = menuId;
 		this.dishId = dishId;
 		this.tableId = tableId;
 		this.dishState = dishState;
+		this.dishNumber=dishNumber;
 	}
 
 	public long getMenuId() {
