@@ -8,10 +8,10 @@
 <meta charset="utf-8">
 <title>餐厅经理考勤管理</title>
 
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="/restaurant/css/main.css">
+<link rel="stylesheet" href="/restaurant/css/bootstrap.min.css">
 
-<script src="js/bootstrap.min.js"></script>
+<script src="/restaurant/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -42,24 +42,22 @@
 					<tr>
 						<th>服务员编号</th>
 						<th>服务员姓名</th>
+						<th>是否打卡</th>
 						<th>打卡日期</th>
 						<th>打卡时间</th>
-						<th>是否打卡</th>
 					</tr>
 				</thead>
 				<tbody>
 					
-					<c:forEach items="${requestScope.persons}" var="person">
+					<c:forEach items="${requestScope.persons}"  var="person" varStatus="loop">
 					<tr>
-					    <td>${person.person_id}</td>
-						<td>${person.person_name}</td>
-						
-						<td>${}</td>
-						<td>Yes</td>
-						<td></td>
+					    <td>${person.id}</td>
+						<td>${person.personName}</td>
+						<td>${ifAttending[loop.count-1]}</td>
+						<td>${dates[loop.count-1]}</td>
+						<td>${times[loop.count-1]}</td>
 					</tr>
-				    </c:forEach>
-						
+					</c:forEach>	
 	
 				</tbody>
 			</table>
