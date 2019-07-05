@@ -1,4 +1,6 @@
-package restaurant.controller.waiterController;
+package restaurant.controller.managerController;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,9 +11,9 @@ import restaurant.service.managerService.ManagerService;
 public class CheckController {
 	@Autowired
 	ManagerService managerService;
-	@RequestMapping("/manage/check")
-	public Object showManageCheck(){
+	@RequestMapping("/manager/check")
+	public Object showManageCheck(HttpSession httpSession){
 		return managerService.getPerson();
-	}
+	} 
 
 }
