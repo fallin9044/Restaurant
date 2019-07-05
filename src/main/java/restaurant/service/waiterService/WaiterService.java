@@ -2,7 +2,6 @@ package restaurant.service.waiterService;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -45,7 +44,6 @@ public class WaiterService  {
 		map.put("existingMenu",menuRepository.findByTableId(tableId));
 		map.put("dishes", dishRepository.findAll());
 		return WebUtils.setModelAndView("orderDish", map);
-		//return map;
 	}
 	
 	@Transactional
