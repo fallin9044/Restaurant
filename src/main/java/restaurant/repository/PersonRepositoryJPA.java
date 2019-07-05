@@ -14,6 +14,9 @@ public interface PersonRepositoryJPA extends JpaRepository<Person, Long> {
 	// 根据用户账号和密码查询
 	@Query(value = "select b from Person b where b.personName=:name and b.password=:password")
 	public List<Person> findByNamePassword(@Param("name") String name, @Param("password") String password);
+	
+	@Query(value = "select b from Person b where b.authority = 1 and b.personState = 1")
+	public List<Person> findByAuthority();
 
 	@Modifying
 	@Query(value = "update Person b set b.personState=1 where b.id = :id")
@@ -22,5 +25,8 @@ public interface PersonRepositoryJPA extends JpaRepository<Person, Long> {
 	@Modifying
 	@Query(value = "update Person b set b.personState=0 where b.id = :id")
 	public void waiterIsNotWork(@Param("id") long id);
+	
+	
+
 
 }

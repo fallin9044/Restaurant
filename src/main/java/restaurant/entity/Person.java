@@ -58,7 +58,7 @@ public class Person implements Serializable {
 	}
 
 	public Person(Long id, String personName, String password, int sex, String personTele, int authority,
-			int personState, Blob personPicture, Timestamp personTime) {
+			int personState, Timestamp personTime) {
 		super();
 		this.id = id;
 		this.personName = personName;
@@ -67,7 +67,17 @@ public class Person implements Serializable {
 		this.personTele = personTele;
 		this.authority = authority;
 		this.personState = personState;
-		this.personPicture = personPicture;
+		this.personTime = personTime;
+	}
+	public Person(String personName, String password, int sex, String personTele, int authority,
+			int personState) {
+		super();
+		this.personName = personName;
+		this.password = password;
+		this.sex = sex;
+		this.personTele = personTele;
+		this.authority = authority;
+		this.personState = personState;
 		this.personTime = personTime;
 	}
 

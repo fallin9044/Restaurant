@@ -73,7 +73,7 @@
 					if(msg.authority == 2){
 						window.location.href = "/restaurant/waiter/tableStatus";
 					}else{
-						window.location.href = "/restaurant/manager";
+						window.location.href = "/restaurant/managerIndex";
 					}
 				} else {
 					alert("账号密码错误！"); 
