@@ -36,21 +36,22 @@ public class ManagerService {
 		//time&if attending
 		List<String> dates=new ArrayList<>();
 		List<String> times=new ArrayList<>();
-		List<String> ifAttending=new ArrayList<>();
+		List<String> ifAttending=new ArrayList<>(); 
 		for(Person person :persons){
 			String str 
 			= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(person.getPersonTime());
 			StringTokenizer stringTokenizer=new StringTokenizer(str);
 			String date=stringTokenizer.nextToken();
 			dates.add(date);
+			times.add(stringTokenizer.nextToken());
 			if(date.equals(now)){
 				ifAttending.add("出勤");
 			}
 			else ifAttending.add("缺勤");
-			times.add(stringTokenizer.nextToken());
 		}
 		map.put("dates", dates);
 		map.put("times", times);
+		
 		map.put("ifAttending", ifAttending);
 		return 	WebUtils.setModelAndView("manage_check", map);
 	}

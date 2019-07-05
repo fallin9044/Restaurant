@@ -51,7 +51,7 @@ public class WaiterService  {
 	@Transactional
 	public void exitLogging(HttpSession session){
 		long id = (long) session.getAttribute("personId");
-		personRepository.waiterIsNotWork(id);
+		//personRepository.waiterIsNotWork(id);
 		session.setAttribute("personId", null);
 		session.setAttribute("authority", null);
 	}
