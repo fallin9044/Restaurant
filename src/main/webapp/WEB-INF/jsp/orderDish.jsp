@@ -23,6 +23,7 @@
 			function() {
 					  TabBlock.init();
 					initialInformation();
+					loadYixuan();
 				//  Initialize Backgound Stretcher	   
 				$('.demoo').bgStretcher(
 						{
@@ -70,11 +71,9 @@
     <div class="tabBlock-pane">
     <div style="height:60%">
       <ul style="list-style-type: none" id="yixuanC">
-      <c:forEach items="${requestScope.existingMenu}" var="item">
-      <li>existingMenu</li>
-      </c:forEach>
       </ul>
      </div>
+     <p id="totalMoney">总价:</p>
      <button type="button" class="btn btn-danger">结算</button>
     </div>
     <div class="tabBlock-pane">
@@ -83,7 +82,7 @@
       	<li>未选择</li>
       </ul>
       </div>
-    <button type="button" class="btn btn-danger">提交</button>
+    <button type="button" class="btn btn-danger" onclick="addMenu()">提交</button>
     </div>
   </div>
 		</div>
@@ -134,6 +133,35 @@ function dishPlus(id){
 	loadWeixuan()
 };
 
+function addMenu(){
+	var tableId = '${requestScope.tableId}';
+	var menus = [];
+	$(".countDish").each(function(){
+		if($(this).html() != '0'){
+			let m = new Object();
+			m.tableId=tableId;
+			m.dishId=$(this).attr("id");
+			m.dishNumber=$(this).html();
+			menus.push(m);
+		}
+	  });
+	console.log(menus)
+	$.ajax({
+		url:"/restaurant/waiter/addMenu",
+		data:{
+			menus:JSON.stringify(menus)
+		},
+		type:"post",
+		success:function(msg){
+			alert(msg);
+		},
+		error:function(XMLHttpRequest, textStatus, errorThrown) {
+		}
+	
+	});
+	
+}
+
 function initialInformation(){
 	var dishes=JSON.parse('${requestScope.dishes}')
 	for(let i of dishes){
@@ -150,6 +178,20 @@ function dishMinus(id){
 	loadWeixuan()
 };
 
+function loadYixuan(){
+	var div1=$("#yixuanC");
+	var zong=$("#totalMoney")
+	var money=0;
+	var str='';
+	var menus=JSON.parse('${requestScope.existingMenu}');
+	for(i of menus){
+		str+='<li>'+DishInformation[i.dishId].dishName+'X'+i.dishNumber+'</li>';
+		money+=DishInformation[i.dishId].dishPrice*i.dishNumber;
+	}
+	zong.html('总价：'+money);
+	if(str == '') div1.html('未点菜')
+	else div1.html(str);
+}
 
 function loadWeixuan(){
 	var div1=$("#weixuanC");
