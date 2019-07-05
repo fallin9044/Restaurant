@@ -25,12 +25,12 @@ public interface DishRepositoryJPA extends JpaRepository<Dish, Long> {
 	
 	
 	@Modifying
-	@Query(value="update Dish b set b.dishID=:id,b.dishName=:name,b.dishPrice=:price,b.dishDesc=:decs,b.dishPicture=:pic,b.isrecommend=:rec")
+	@Query(value="update Dish b set b.dishId=:id,b.dishName=:name,b.dishPrice=:price,b.dishDesc=:decs,b.dishPicture=:pic,b.isrecommend=:rec")
 	public void updateDish(@Param("id")long id,@Param("name")String name,@Param("price")int price,@Param("decs") String decs
 	                       ,@Param("pic")String pic,@Param("rec")int rec);
 	
 	@Modifying
-	@Query(value="select b from Dish b where b.dishID = :id")
+	@Query(value="select b from Dish b where b.dishId = :id")
 	public Dish SelectByID(@Param("id")long id);
 	
 	@Modifying
