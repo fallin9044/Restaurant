@@ -1,5 +1,6 @@
 package restaurant.utils;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,29 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 public class WebUtils {
+
+	public static <T> void getObjectList(List<T> org, List<T> target,int start,int count){
+		for(int i=start;i<start+count&&i<org.size();i++){
+			target.add(org.get(i));
+		}
+	}
+	
+	public static int[] getPagingInfo(int start, int count, int total) {
+		int[] info = new int[3];
+		int next = start + count;
+		int pre = start - count;
+		int last;
+		if (0 == total % count)
+			last = total - count;
+		else
+			last = total - total % count;
+		pre = pre < 0 ? 0 : pre;
+		next = next > last ? last : next;
+		info[0] = next;
+		info[1] = pre;
+		info[2] = last;
+		return info;
+	}
 
 	public static boolean pageValidate(HttpSession httpSession) {
 		System.out.println("页面判断是否登陆");

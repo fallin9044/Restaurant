@@ -17,7 +17,6 @@ public class OrderDishController {
 	
 	@RequestMapping("/waiter/orderDish")
 	public Object showTableStatus(HttpSession session,@RequestParam(value = "tableId",required = false, defaultValue = "1") long tableId){
-		System.out.println("lalalalalalal"+tableId);
 		return waiterService.loadOrderDish(tableId);
 	}
 	

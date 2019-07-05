@@ -99,4 +99,9 @@ public class Dish implements Serializable {
 		this.isrecommend = isrecommend;
 	}
 
+	@Override
+	public String toString() {
+		return "{\"dishId\":" + dishId + ",\"dishName\":\"" + dishName + "\",\"dishPrice\":" + dishPrice + "}";
+	}
+
 }

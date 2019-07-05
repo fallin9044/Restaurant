@@ -1,4 +1,5 @@
 package restaurant.service.managerService;
+
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,16 +13,24 @@ import java.util.StringTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
 import restaurant.entity.Dish;
 import restaurant.entity.Person;
 import restaurant.repository.DishRepository;
+=======
+import restaurant.entity.OrderStream;
+import restaurant.entity.Person;
+import restaurant.repository.OrderStreamRepository;
+>>>>>>> ffb7d7a1a3148776af4e28abcd440b17176ba0e5
 import restaurant.repository.PersonRepository;
 import restaurant.utils.WebUtils;
+
 @Service
 public class ManagerService {
-	
+
 	@Autowired
 	PersonRepository personDAO;
+<<<<<<< HEAD
 	
 	@Autowired
 	DishRepository dishDAO;
@@ -102,6 +111,35 @@ public class ManagerService {
 	
 	/*************************************************/
 	
+=======
+
+	@Autowired
+	OrderStreamRepository orderStreamRepository;
+
+	public Object loadOrderStream(String detail, int start) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<OrderStream> orders = null;
+		List<OrderStream> orderList = new ArrayList<>();
+		if(detail.equals("今日")){
+			orders = orderStreamRepository.findToday();
+		}else if(detail.equals("最近一周")){
+	        orders = orderStreamRepository.findWeek();
+		}else if(detail.equals("最近一月")){
+	        orders = orderStreamRepository.findMonth();
+		}else{
+			orders = orderStreamRepository.findAll();
+		}
+		WebUtils.getObjectList(orders, orderList, start, 5);
+		int[] info = WebUtils.getPagingInfo(start, 5, orders.size());
+		map.put("next", info[0]);
+		map.put("pre", info[1]);
+		map.put("last", info[2]);
+		map.put("orderStream", orderList);
+		map.put("detail", detail);
+		return WebUtils.setModelAndView("manage_order", map);
+	}
+
+>>>>>>> ffb7d7a1a3148776af4e28abcd440b17176ba0e5
 	public Object getPerson(){
 		//person
 		List<Person> persons =personDAO.getWorkingPerson();
@@ -133,6 +171,6 @@ public class ManagerService {
 		map.put("times", times);
 		
 		map.put("ifAttending", ifAttending);
-		return 	WebUtils.setModelAndView("manage_check", map);
+		return WebUtils.setModelAndView("manage_check", map);
 	}
 }
