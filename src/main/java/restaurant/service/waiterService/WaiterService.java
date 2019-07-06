@@ -1,5 +1,7 @@
 package restaurant.service.waiterService;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +18,11 @@ import com.alibaba.fastjson.JSONArray;
 
 import restaurant.entity.Dining;
 import restaurant.entity.Menu;
+import restaurant.entity.OrderStream;
 import restaurant.repository.DiningRepository;
 import restaurant.repository.DishRepository;
 import restaurant.repository.MenuRepository;
+import restaurant.repository.OrderStreamRepository;
 import restaurant.repository.PersonRepository;
 import restaurant.utils.WebUtils;
 
@@ -36,6 +40,9 @@ public class WaiterService  {
     
     @Autowired
     DishRepository dishRepository;
+    
+    @Autowired
+    OrderStreamRepository orderStreamRepository;
 
 	public Object loadTableStatus() {
 		Map<String,Object> map= new HashMap<String, Object>();
@@ -82,13 +89,37 @@ public class WaiterService  {
 				if(res.size()>0) {
 					Menu menu2 = res.get(0);
 					menu2.setDishNumber(menu2.getDishNumber()+menu.getDishNumber());
-					menuRepository.save(menu2);
+					menu2.setDishState(0);
+					menuRepository.saveAndFlush(menu2);
 				}else {
-					menuRepository.save(menu);
+					menuRepository.saveAndFlush(menu);
 				}
 			}
 			
 		}catch (Exception e) {
+			return "failed";
+		}
+		return "success";
+	}
+
+	@Transactional
+	public String settleAccount(HttpSession session,long tableId, int total) {
+		try {
+			Timestamp now = new Timestamp(System.currentTimeMillis());
+			OrderStream orderStream = new OrderStream(0,(Long)session.getAttribute("personId"), total, now, tableId);
+			menuRepository.deleteByTableId(tableId);
+			orderStreamRepository.saveAndFlush(orderStream);
+		}catch(Exception e){
+			return "failed";
+		}
+		return "success";
+	}
+
+	@Transactional
+	public Object changeMenuState(long menuId) {
+		try {
+			menuRepository.changeMenuState(menuId,1);
+		}catch(Exception e) {
 			return "failed";
 		}
 		return "success";
