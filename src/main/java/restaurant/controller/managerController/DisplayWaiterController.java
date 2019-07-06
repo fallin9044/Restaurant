@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import restaurant.service.managerService.ManagerService;
 
+/**
+ * 
+ * @author wychen
+ *
+ */
 @Controller
 public class DisplayWaiterController {
 	
@@ -20,7 +25,12 @@ public class DisplayWaiterController {
 	ManagerService managerService;
 	
 	private static final String managerIndex = "manage_index";
-		
+	/**
+	 * 
+	 * @param session
+	 * @param start 起始号码
+	 * @return
+	 */
 	@RequestMapping("/managerIndex")
 	public Object DisplaWaiter(HttpSession session,
 			@RequestParam(value="start",required=false,defaultValue="0") int start){

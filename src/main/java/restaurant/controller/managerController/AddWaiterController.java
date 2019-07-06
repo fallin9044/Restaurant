@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import restaurant.service.managerService.ManagerService;
-
+/**
+ * 
+ * @author wychen
+ *
+ */
 @Controller
 public class AddWaiterController {
 

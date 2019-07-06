@@ -78,7 +78,7 @@
 
 
 		<div class="footer">
-			<p align="center" style="margin: 0">wychen1234567890</p>
+			<p align="center" style="margin: 0">西安"海上捞"空中花园餐厅 2019 Powered by wychen</p>
 		</div>
 
 	</div>

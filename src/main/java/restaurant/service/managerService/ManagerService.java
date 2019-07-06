@@ -172,7 +172,8 @@ public class ManagerService {
 	
 	
 	/**
-	 * 展示所有在职的服务员
+	 * 展示所有在职的服务员,并进行分页
+	 * 
 	 * @author wychen
 	 * @param location 目的网页
 	 * @return
@@ -204,6 +205,7 @@ public class ManagerService {
 	/**
 	 * 
 	 * 添加新的服务员
+	 * 
 	 * @author wychen
 	 * @param name 姓名
 	 * @param sex 性别

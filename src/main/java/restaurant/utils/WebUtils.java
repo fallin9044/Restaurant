@@ -17,7 +17,14 @@ public class WebUtils {
 			target.add(org.get(i));
 		}
 	}
-	
+	/**
+	 * 对页码进行操作
+	 * @author swhan wychen
+	 * @param start 默认0
+	 * @param count
+	 * @param total
+	 * @return info[5]
+	 */
 	public static int[] getPagingInfo(int start, int count, int total) {
 		int[] info = new int[5];
 		int next = start + count;
