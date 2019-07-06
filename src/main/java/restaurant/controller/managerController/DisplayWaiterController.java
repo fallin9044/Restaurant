@@ -22,9 +22,10 @@ public class DisplayWaiterController {
 	private static final String managerIndex = "manage_index";
 		
 	@RequestMapping("/managerIndex")
-	public Object DisplaWaiter(HttpSession session){
+	public Object DisplaWaiter(HttpSession session,
+			@RequestParam(value="start",required=false,defaultValue="0") int start){
 		
-		return managerService.takePerson(managerIndex);
+		return managerService.takePerson(managerIndex,start);
 	}
 	
 	

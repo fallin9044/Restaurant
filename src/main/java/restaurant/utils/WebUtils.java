@@ -19,7 +19,7 @@ public class WebUtils {
 	}
 	
 	public static int[] getPagingInfo(int start, int count, int total) {
-		int[] info = new int[3];
+		int[] info = new int[5];
 		int next = start + count;
 		int pre = start - count;
 		int last;
@@ -27,11 +27,15 @@ public class WebUtils {
 			last = total - count;
 		else
 			last = total - total % count;
-		pre = pre < 0 ? 0 : pre;
+		
+		int pagecount = start / count + 1;
+ 		pre = pre < 0 ? 0 : pre;
 		next = next > last ? last : next;
 		info[0] = next;
 		info[1] = pre;
 		info[2] = last;
+		info[3] = pagecount;
+		info[4] = total/count;
 		return info;
 	}
 

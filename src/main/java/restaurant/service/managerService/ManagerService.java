@@ -169,21 +169,42 @@ public class ManagerService {
 		map.put("ifAttending", ifAttending);
 		return WebUtils.setModelAndView("manage_check", map);
 	}
+	
+	
 	/**
 	 * 展示所有在职的服务员
 	 * @author wychen
 	 * @param location 目的网页
 	 * @return
+	 *
 	 */
 	@Transactional(isolation=Isolation.SERIALIZABLE)
-	public Object takePerson(String location){
+	public Object takePerson(String location,int start){
+		
 		Map<String,Object> map = new HashMap<String,Object>();
+		List<Person> personList = personDAO.findByAuthority();
+		List<Person> personForm = new ArrayList<>();
+		//从数据库中获取所有的服务员
 		map.put("personList",personDAO.findByAuthority());
+
+		WebUtils.getObjectList(personList, personForm, start, 6);
+		int[] info = WebUtils.getPagingInfo(start, 6, personList.size());
+		map.put("next", info[0]);
+		map.put("pre", info[1]);
+		map.put("last", info[2]);
+		map.put("count", info[3]);
+		map.put("total", info[4]+1);
+		map.put("personStream", personForm);
+		
 		return WebUtils.setModelAndView(location, map);
+		
+		
 		
 	}
 	/**
 	 * 
+	 * 添加新的服务员
+	 * @author wychen
 	 * @param name 姓名
 	 * @param sex 性别
 	 * @param telephone 电话
@@ -194,15 +215,15 @@ public class ManagerService {
 	public int addPerson(String name,String sex,String telephone,String password){
 		int flag = 1;
 		int sexnum = 0;
+		
 		try {
 			if(sex=="男") {
 				sexnum = 1;
 			}else {
 				sexnum = 0;
 			}
-			
 			List<Person> persons= personDAO.findIsRepeat(name, telephone);
-			System.out.println(persons.size());
+			//验证是否重复添加
 			if(persons==null||persons.size()==0) {
 				flag = 1;
 				personDAO.save(new Person(name,password,sexnum,telephone,2,1));

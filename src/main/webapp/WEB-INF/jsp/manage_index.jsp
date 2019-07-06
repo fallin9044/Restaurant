@@ -48,7 +48,7 @@
                 
                 <tbody>
                 
-                <c:forEach items="${requestScope.personList}" var="person">
+                <c:forEach items="${requestScope.personStream}" var="person">
 					<tr>
 						<td>${person.id}</td>
 						<td>${person.personName}</td>
@@ -66,13 +66,11 @@
             <!-- 翻页 -->
              <div align="center">
                 <ul class="pagination">
-                   <li><a href="#">&laquo;</a></li>
-                   <li><a href="#">1</a></li>
-                   <li><a href="#">2</a></li>
-                   <li><a href="#">3</a></li>
-                   <li><a href="#">4</a></li>
-                   <li><a href="#">5</a></li>
-                   <li><a href="#">&raquo;</a></li>
+                   <li><a href="?start=0">首页</a></li>
+                   <li><a href="?start=${requestScope.pre}">上一页</a></li>
+                   <li><a>${requestScope.count}/${requestScope.total}</a></li>
+                   <li><a href="?start=${requestScope.next}">下一页</a></li>
+                   <li><a href="?start=${requestScope.last}">末 页</a></li>
                 </ul>
               </div> 
             </div>
