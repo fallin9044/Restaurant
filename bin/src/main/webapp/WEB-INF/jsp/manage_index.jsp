@@ -10,7 +10,7 @@
     
     <link rel="stylesheet" href="/restaurant/css/main.css">
 	<link rel="stylesheet" href="/restaurant/css/bootstrap.min.css">
-    <script src="/restaurant/js/jquery-3.4.1.min.js"></script>
+    
     <script src="/restaurant/js/bootstrap.min.js"></script>
 </head>
 
@@ -31,7 +31,8 @@
         <div class="sheet">
             <div class="title">
                 <h1>服务员名单</h1>
-                <button id = "addW_btn" type="button" class="btn btn-default">添加服务员
+                <button type="button" class="btn btn-default">
+                    <a href="/restaurant/addWaiter" style="color:black;">添加服务员</a>
                 </button>
             </div>
             <div>
@@ -85,11 +86,4 @@
         
     </div>
 </body>
-
-<script type="text/javascript">
-	$("#addW_btn").click(function(){
-		window.location.href = "/restaurant/addWaiter";
-	})
-
-</script>
 </html>

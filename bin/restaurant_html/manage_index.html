@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>餐厅经理主页</title>
+    
+    <link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    
+    <div class="background" >
+        <!-- 导航栏 -->
+        <div class="header" >
+            <ul class="nav nav-pills">、
+                <li role="presentation" class="list active"><a href="manage_index.html">服务员管理</a></li>
+                <li role="presentation" class="list"><a href="manage_check.html">考勤管理</a></li>
+                <li role="presentation" class="list"><a href="manage_advance.html">预定管理</a></li>
+                <li role="presentation" class="list"><a href="manage_dish.html">菜品管理</a></li>
+                <li role="presentation" class="list"><a href="manage_order.html">流水管理</a></li>
+            </ul>
+        </div>
+        <!-- 员工表格  -->
+        <div class="sheet">
+            <div class="title">
+                <h1>服务员名单</h1>
+                <button type="button" class="btn btn-default">
+                    <a href="add_waiter.html" style="color:black;">添加服务员</a>
+                </button>
+            </div>
+            <div>
+            <table class="table table-striped" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">服务员ID</th>
+                        <th style="text-align: center;">姓名</th>
+                        <th style="text-align: center;">性别</th>
+                        <th style="text-align: center;">电话</th>
+                        <th style="text-align: center;">编辑/删除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Rammohan </td>
+                        <td>Reddy</td>
+                        <td>A+</td>
+                        <td><button type="button" class="btn btn-default"><a>edit</a></button>
+                            <button type="button" class="btn btn-default"><a>delete</a></button></td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Smita</td>
+                        <td>Pallod</td>
+                        <td>A</td>
+                        <td><button type="button" class="btn btn-default"><a>edit</a></button>
+                            <button type="button" class="btn btn-default"><a>delete</a></button></td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Rabindranath</td>
+                        <td>Sen</td>
+                        <td>A+</td>
+                        <td><button type="button" class="btn btn-default"><a>edit</a></button>
+                            <button type="button" class="btn btn-default"><a>delete</a></button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- 翻页 -->
+             <div align="center">
+                <ul class="pagination">
+                   <li><a href="#">&laquo;</a></li>
+                   <li><a href="#">1</a></li>
+                   <li><a href="#">2</a></li>
+                   <li><a href="#">3</a></li>
+                   <li><a href="#">4</a></li>
+                   <li><a href="#">5</a></li>
+                   <li><a href="#">&raquo;</a></li>
+                </ul>
+              </div> 
+            </div>
+        </div>
+        
+        <!--页尾-->
+        <div class="footer" >
+            <p align="center">西安"海上捞"空中花园餐厅 2019 Powered by wychen</p>
+        </div>
+        
+    </div>
+</body>
+</html>

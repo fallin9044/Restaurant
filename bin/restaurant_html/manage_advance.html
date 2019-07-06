@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>餐厅经理预定管理</title>
+    
+    <link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!-- 顶部导航栏  -->
+    <div class="background" > 
+        <div class="header" >
+            <ul class="nav nav-pills">、
+                <li role="presentation" class="list"><a href="manage_index.html">服务员管理</a></li>
+                <li role="presentation" class="list"><a href="manage_check.html">考勤管理</a></li>
+                <li role="presentation" class="list  active"><a href="manage_advance.html">预定管理</a></li>
+                <li role="presentation" class="list"><a href="manage_dish.html">菜品管理</a></li>
+                <li role="presentation" class="list"><a href="manage_order.html">流水管理</a></li>
+            </ul>
+        </div>
+   
+    <!-- 预定管理表格 -->
+		<div class="sheet">
+            <div class="title">
+                <h1>今日预定</h1>
+                <button type="button" class="btn btn-default"><span>2019-07-03</span>
+                </button>
+            </div>
+            <div>
+			<table class="table table-striped" style="text-align: center;">
+				<thead>
+					<tr>
+						<th style="text-align: center;">桌号</th>
+						<th style="text-align: center;">预定时间</th>
+						<th style="text-align: center;">In</th>
+						<th style="text-align: center;">Cancel</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>001</td>
+						<td>2019-07-04 19:00:00</td>
+						<td><button class="btn btn-success">In</button></td>
+						<td><button class="btn btn-warning">Cancel</button></td>
+					</tr>
+					<tr>
+						<td>001</td>
+						<td>2019-07-04 19:00:00</td>
+						
+						<td><button class="btn btn-success">In</button></td>
+						<td><button class="btn btn-warning">Cancel</button></td>
+					</tr>
+					<tr>
+						<td>002</td>
+						<td>2019-07-05 19:00:00</td>
+						
+						<td><button class="btn btn-success">In</button></td>
+						<td><button class="btn btn-warning">Cancel</button></td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- 翻页 -->
+			<div align="center">
+				<ul class="pagination">
+					<li><a href="#">&laquo;</a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">&raquo;</a></li>
+				</ul>
+			</div>
+                </div>
+		</div>
+    
+    
+     <!-- 页尾   -->
+        <div class="footer" >
+            <p align="center">西安"海上捞"空中花园餐厅 2019 Powered by wychen</p>
+        </div>
+        
+    </div>
+    
+    
+</body>
+</html>

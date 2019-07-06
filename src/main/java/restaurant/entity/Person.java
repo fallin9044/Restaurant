@@ -69,6 +69,7 @@ public class Person implements Serializable {
 		this.personState = personState;
 		this.personTime = personTime;
 	}
+	
 	public Person(String personName, String password, int sex, String personTele, int authority,
 			int personState) {
 		super();
@@ -78,7 +79,6 @@ public class Person implements Serializable {
 		this.personTele = personTele;
 		this.authority = authority;
 		this.personState = personState;
-		this.personTime = personTime;
 	}
 
 	public Long getId() {

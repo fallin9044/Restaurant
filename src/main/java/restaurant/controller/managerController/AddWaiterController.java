@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +17,15 @@ import restaurant.service.managerService.ManagerService;
 public class AddWaiterController {
 
 		private static final String addWaiter = "add_waiter";
+		
+		@Autowired
 		ManagerService managerService;
+		
+		@RequestMapping("/addWaiter")
+		public Object AddWaiter(HttpSession session){
+			return addWaiter;
+		}
+		
 		/**
 		 * 
 		 * @param session
@@ -27,15 +36,17 @@ public class AddWaiterController {
 		 * @return
 		 */
 		@ResponseBody
-		@RequestMapping("/addWaiter")
-		public Object addWaiter(HttpSession session,@RequestParam(value="waitername") String name,
+		@RequestMapping("/adding")
+		public Object addWaiter(HttpSession session,@RequestParam(value="waitername") String waitername,
 				@RequestParam(value="sex") String sex,@RequestParam(value="telephone") String telephone,
 				@RequestParam(value="password") String password){
 			
-			Map<String,Object> maps = new HashMap<>();
+			System.out.println("dfadsfasdfsfsaf");
 			
-			int flag = managerService.addPerson(name, sex, telephone, password);
-			maps.put("flag",flag);
+			Map<String,Object> maps = new HashMap<>();
+			int flag = managerService.addPerson(waitername, sex, telephone, password);
+			System.out.println(flag);
+			maps.put("isrepeat", flag);
 			return maps;
 		}
 

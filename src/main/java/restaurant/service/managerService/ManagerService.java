@@ -171,6 +171,7 @@ public class ManagerService {
 	}
 	/**
 	 * 展示所有在职的服务员
+	 * @author wychen
 	 * @param location 目的网页
 	 * @return
 	 */
@@ -181,20 +182,40 @@ public class ManagerService {
 		return WebUtils.setModelAndView(location, map);
 		
 	}
-	
+	/**
+	 * 
+	 * @param name 姓名
+	 * @param sex 性别
+	 * @param telephone 电话
+	 * @param password 密码
+	 * @return flag 返回标志，flag为1表示添加成功，flag为0表示添加失败
+	 */
 	@Transactional(isolation=Isolation.SERIALIZABLE)
 	public int addPerson(String name,String sex,String telephone,String password){
-		int flag = 0;
+		int flag = 1;
 		int sexnum = 0;
-		if(sex=="男") {
-			sexnum = 1;
-		}else {
-			sexnum = 0;
+		try {
+			if(sex=="男") {
+				sexnum = 1;
+			}else {
+				sexnum = 0;
+			}
+			
+			List<Person> persons= personDAO.findIsRepeat(name, telephone);
+			System.out.println(persons.size());
+			if(persons==null||persons.size()==0) {
+				flag = 1;
+				personDAO.save(new Person(name,password,sexnum,telephone,2,1));
+				
+			}else {
+				flag = 0;
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+			
 		}
 		
-		personDAO.save(new Person(name,password,sexnum,telephone,1,1));
-		
-		
+
 		return flag;
 		
 	}

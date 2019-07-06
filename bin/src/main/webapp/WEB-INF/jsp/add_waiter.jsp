@@ -7,11 +7,10 @@
 <head>
 <title>添加用户</title>
     
-    <link rel="stylesheet" href="/restaurant/css/main.css">
-	<link rel="stylesheet" href="/restaurant/css/bootstrap.min.css">
-    <script src="/restaurant/js/jquery-3.4.1.min.js"></script>
-    <script src="/restaurant/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <script src="js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -33,7 +32,7 @@
         </div>
         
         <div class="col-md-10 col-md-offset-1">
-            <div class="form-horizontal" >
+            <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="inputPassword" class="col-sm-3 control-label">姓名</label>
                         <div class="col-sm-6">
@@ -66,7 +65,7 @@
                     <div class="form-group">
                      <button id="add_waiter_btn" class="btn btn-success">提交</button>
                     </div>
-                </div>
+                </form>
             </div>
         
     </div>
@@ -96,7 +95,7 @@
 			alert("您没有输入性别！");
 			return;
 		}
-		if(sex!='男'&&sex!='女'){
+		if(sex!='男'||sex!='女'){
 			alert("请按规范输入“男”或“女”");
 			return;
 		}
@@ -110,15 +109,21 @@
 		}
 		
 		$.ajax({
-			url:"/restaurant/adding",
+			//
+			url:"/restaurant/addWaiter",
 			data:{waitername:waitername,sex:sex,telephone:telephone,password:password},
 			type:"post",
+			
 			success:function(msg){
-				console.log(msg.isrepeat);
-				if (msg.isrepeat == 1) {
-					window.location.href = "/restaurant/managerIndex";
+				console.log(msg);
+				if (msg.flag != -1) {
+					if(msg.authority == 2){
+						window.location.href = "/restaurant/waiter/tableStatus";
+					}else{
+						window.location.href = "/restaurant/managerIndex";
+					}
 				} else {
-					alert("该服务员已被注册！"); 
+					alert("账号密码错误！"); 
 				} 
 			},
 			error:function(XMLHttpRequest, textStatus, errorThrown) {
