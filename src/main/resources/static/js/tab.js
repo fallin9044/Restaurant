@@ -1,6 +1,6 @@
 var TabBlock = {
   s: {
-    animLen: 200
+    animLen: 0
   },
   
   init: function() {

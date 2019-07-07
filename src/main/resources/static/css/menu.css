@@ -84,3 +84,23 @@
   line-height: 1.428571429;
   border-radius: 15px;
 }
+
+.tabBlock-tab {
+	border:2px solid #fff;
+	border-bottom:none;
+}
+.tabBlock-content{
+	height:500px;
+}
+.tab-menu{
+	height:400px;
+    overflow: auto; 
+    	background-color:#fff;
+    clear:both;
+    padding-left:25px;
+    padding-right:30px;
+    padding-top:13px
+}
+.is-active{
+	background-color:#fff
+}

@@ -16,4 +16,10 @@ public interface MenuRepositoryJPA extends JpaRepository<Menu, Long> {
 	List<Menu> findByTableId(long id);
 	
 	List<Menu> findByTableIdAndDishId(long tableId, long dishId);
+	
+	void deleteByTableId(long tableId);
+	
+	@Modifying
+	@Query(value = "Update Menu b set b.dishState = :state where b.id = :id")
+	void changeMenuState(@Param("id")long menuId,@Param("state") int i);
 }
