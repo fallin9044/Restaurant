@@ -56,7 +56,7 @@
 						<td>${person.sex}</td>
 						<td>${person.personTele}</td>
 
-						<td><button type="button" class="btn btn-default" onclick="edit(${person.id})">
+						<td><button type="button" class="btn btn-default" onclick="edit1(${person.id})">
 							edit</button>
                             <button type="button" class="btn btn-default" onclick="delete1(${person.id})">
                             delete</button></td>
@@ -94,13 +94,11 @@
 		window.location.href = "/restaurant/addWaiter";
 	})
 	
-	function edit(id){
+	function edit1(id){
+		var personId = id;
 		
-		$.ajax({
-			url:"/restaurant/editWaiter",
-			data:{personId:personId},
-			type:"post",
-		});
+		window.location.href = "/restaurant/editWaiter?personId="+personId;
+		
 	};
 	
 	function delete1(id){
