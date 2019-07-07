@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -241,5 +242,29 @@ public class ManagerService {
 
 		return flag;
 		
+	}
+	/**
+	 * 
+	 * @param location
+	 * @param personId
+	 * @return
+	 */
+	@Transactional(isolation=Isolation.SERIALIZABLE)
+	public Object editWaiter(String location,Long personId) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		Optional<Person> czxzz = personDAO.findById(personId);
+		czxzz.get();
+		map.put("person", czxzz);
+		return WebUtils.setModelAndView(location, map);
+	}
+	/**
+	 * 将服务员的在职状态置0
+	 * @author wychen
+	 * @param personId 服务员ID
+	 */
+	@Transactional(isolation=Isolation.SERIALIZABLE)
+	public void deleteWaiter(Long personId) {
+		
+		personDAO.waiterIsNotWork(personId);
 	}
 }

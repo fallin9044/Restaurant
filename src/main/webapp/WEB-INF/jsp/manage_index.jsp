@@ -10,6 +10,7 @@
     
     <link rel="stylesheet" href="/restaurant/css/main.css">
 	<link rel="stylesheet" href="/restaurant/css/bootstrap.min.css">
+	
     <script src="/restaurant/js/jquery-3.4.1.min.js"></script>
     <script src="/restaurant/js/bootstrap.min.js"></script>
 </head>
@@ -54,8 +55,11 @@
 						<td>${person.personName}</td>
 						<td>${person.sex}</td>
 						<td>${person.personTele}</td>
-						<td><button type="button" class="btn btn-default"><a>edit</a></button>
-                            <button type="button" class="btn btn-default"><a>delete</a></button></td>
+
+						<td><button type="button" class="btn btn-default" onclick="edit(${person.id})">
+							edit</button>
+                            <button type="button" class="btn btn-default" onclick="delete1(${person.id})">
+                            delete</button></td>
 		
 					</tr>
 				</c:forEach>
@@ -84,10 +88,31 @@
     </div>
 </body>
 
+
 <script type="text/javascript">
 	$("#addW_btn").click(function(){
 		window.location.href = "/restaurant/addWaiter";
 	})
+	
+	function edit(id){
+		
+		$.ajax({
+			url:"/restaurant/editWaiter",
+			data:{personId:personId},
+			type:"post",
+		});
+	};
+	
+	function delete1(id){
+		
+		$.ajax({
+			url:"/restaurant/deleteWaiter",
+			data:{personId:id},
+			type:"post",
+		});
+
+		window.location.href = "/restaurant/managerIndex"
+	};
 
 </script>
 </html>
