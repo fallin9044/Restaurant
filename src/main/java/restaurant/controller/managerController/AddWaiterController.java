@@ -32,6 +32,7 @@ public class AddWaiterController {
 		
 		/**
 		 * 
+		 * @author wychen
 		 * @param session
 		 * @param name 姓名
 		 * @param sex 性别

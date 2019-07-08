@@ -220,7 +220,7 @@ public class ManagerService {
 		int sexnum = 0;
 		
 		try {
-			if(sex=="男") {
+			if(sex.equals("男")) {
 				sexnum = 1;
 			}else {
 				sexnum = 0;
@@ -253,8 +253,15 @@ public class ManagerService {
 	public Object editWaiter(String location,Long personId) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		Optional<Person> czxzz = personDAO.findById(personId);
-		czxzz.get();
-		map.put("person", czxzz);
+		String sexName = "";
+		if(czxzz.get().getSex()==1) {
+			sexName = "男";
+		}else {
+			sexName = "女";
+		}
+		map.put("person", czxzz.get());
+		map.put("sex", sexName);
+		
 		return WebUtils.setModelAndView(location, map);
 	}
 	/**
@@ -266,5 +273,46 @@ public class ManagerService {
 	public void deleteWaiter(Long personId) {
 		
 		personDAO.waiterIsNotWork(personId);
+	}
+	
+	/**
+	 * 
+	 * 更新信息
+	 * 
+	 * @author wychen
+	 * @param name 姓名
+	 * @param sex 性别
+	 * @param telephone 电话
+	 * @param password 密码
+	 * @return flag 返回标志，flag为1表示更新成功，flag为0表示更新失败
+	 */
+	@Transactional(isolation=Isolation.SERIALIZABLE)
+	public int updatePerson(Long id,String name,String sex,String telephone,String password){
+		int flag = 0;
+		int sexnum = 0;
+		
+		try {
+			if(sex.equals("男")) {
+				sexnum = 1;
+			}else {
+				sexnum = 0;
+			}
+			List<Person> persons= personDAO.findIsRepeatx(name,sexnum,telephone,password);
+			//验证是否重复添加
+			if(persons==null||persons.size()==0) {
+				flag = 1;
+				personDAO.editinfo(id, name, sexnum, telephone, password);;
+				
+			}else {
+				flag = 0;
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+			
+		}
+		
+
+		return flag;
+		
 	}
 }
