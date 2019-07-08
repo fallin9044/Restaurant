@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PageValidationAOP {
 	// shiro
-	private static final String registerPage = "redirect:register";
+	private static final String registerPage = "redirect:/register";
 
 	@Pointcut("execution(* restaurant.controller.*.*.*(..))")
 	public void waiterControllerJointPointExpression() {

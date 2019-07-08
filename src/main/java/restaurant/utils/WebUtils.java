@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import restaurant.entity.Dining;
 import restaurant.entity.Reserves;
 
 public class WebUtils {
@@ -18,7 +19,7 @@ public class WebUtils {
 		}
 	}
 
-	public static void getFirstReserve(List<Reserves> org, List<Reserves> target) {
+	public static void getFirstReserve(List<Reserves> org, List<Reserves> target,List<Dining> diningList) {
 		Map<Long, Integer> tmp = new HashMap<>();
 		Integer index = 0;
 		for (Reserves res : org) {
@@ -35,6 +36,20 @@ public class WebUtils {
 		for (Long key : tmp.keySet()) {
 			index = tmp.get(key);
 			target.add(org.get(index));
+		}
+		
+		for(Dining din:diningList){
+			if(din.getTableState()==1){
+				int flag = 0;
+				for(Reserves res:target){
+					if(res.getTableId()==din.getTableId()){
+						flag = 1;
+					}
+				}
+				if(flag == 0){
+					din.setTableState(0);
+				}
+			}
 		}
 	}
 

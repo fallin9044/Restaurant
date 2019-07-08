@@ -61,9 +61,9 @@ public class WaiterService {
 		map.put("count",info[3]);
 		map.put("total",info[4]);
 		map.put("tablestatus", diningList);
-		List<Reserves> reserves = reservesRepository.findAll();
+		List<Reserves> reserves = reservesRepository.twoHourInterval();
 		List<Reserves> reservesList = new ArrayList<>();
-		WebUtils.getFirstReserve(reserves, reservesList);
+		WebUtils.getFirstReserve(reserves, reservesList, diningList);
 		map.put("reserves", reservesList);
 		return WebUtils.setModelAndView(waiterPage, map);
 	}

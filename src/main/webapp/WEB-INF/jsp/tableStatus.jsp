@@ -77,7 +77,7 @@ function getTableNum(element){
 	var tableId = $(element.parentElement).children("td").eq(0).html();
 	var tableState = $(element.parentElement).children("td").eq(2).html();
 	
-	if(tableState=="空闲"){
+	if(tableState=="空闲"||tableState=="预约"){
 		$.ajax({
 			url:"/restaurant/waiter/takeTable",
 			data:{tableState:tableState,tableId:tableId},
@@ -85,7 +85,7 @@ function getTableNum(element){
 			success:function(msg){
 				console.log(msg);
 				if (msg.flag == -1) {
-					alert("已经有人占座，请刷新页面！"); 
+					alert("已经占座，请刷新页面！"); 
 				} else {
 					alert("占座成功！"); 
 				}
@@ -96,24 +96,6 @@ function getTableNum(element){
 		
 		});
 		
-	}else if(tableState=="预约"){
-		$.ajax({
-			url:"/restaurant/waiter/takeTable",
-			data:{tableState:tableState,tableId:tableId},
-			type:"post",
-			success:function(msg){
-				console.log(msg);
-				if (msg.flag == -1) {
-					alert("已经就座，请刷新页面！"); 
-				} else {
-					alert("就座成功！"); 
-				}
-				window.location.href = "/restaurant/waiter/tableStatus";
-			},
-			error:function(XMLHttpRequest, textStatus, errorThrown) {
-			}
-		
-		});
 	}else if(tableState=="在吃"){
 		
 	}
