@@ -35,13 +35,16 @@ public class TableController {
 	@ResponseBody
 	@RequestMapping("/waiter/takeTable")
 	public Object takeTable(HttpSession session,
+			@RequestParam("tableState") String tableState,
 			@RequestParam("tableId") long tableId){
 		Map<String,Object> maps = new HashMap<>();
-		if(waiterService.takeTable(tableId)){
+		
+		if(waiterService.takeTable(tableId,tableState)){
 			maps.put("flag", 1);
 		}else{
 			maps.put("flag", -1);
 		}
+		
 		return maps;
 	}
 	

@@ -28,6 +28,7 @@
 						<th>几人桌</th>
 						<th>状态</th>
 						<th>操作</th>
+						<th>预约时间</th>
 						
 					</tr>
 				</thead>
@@ -39,11 +40,19 @@
 							<c:if test="${table.tableState == '0'}">
 								<td>空闲</td>
 								<td onclick=getTableNum(this)><input type="submit" value="占座"/></td>
+								<td>无</td>
 							</c:if>
-							<c:if test="${table.tableState != '0'}">
+							<c:if test="${table.tableState == '1'}">
+								<td>预约</td>
+								<td onclick=getTableNum(this)><input type="submit" value="就座"/></td>
+								<td>无</td>
+							</c:if>
+							<c:if test="${table.tableState == '2'}">
 								<td>在吃</td>
 								<td onclick=getTableNum(this)><input type="submit" value="点餐"/></td>
+								<td>无</td>
 							</c:if>
+							
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -62,12 +71,12 @@ function getTableNum(element){
 	if(tableState=="空闲"){
 		$.ajax({
 			url:"/restaurant/waiter/takeTable",
-			data:{tableId:tableId},
+			data:{tableState:tableState,tableId:tableId},
 			type:"post",
 			success:function(msg){
 				console.log(msg);
 				if (msg.flag == -1) {
-					alert("已经有人占座！"); 
+					alert("已经有人占座，请刷新页面！"); 
 				} else {
 					alert("占座成功！"); 
 				}
@@ -78,7 +87,25 @@ function getTableNum(element){
 		
 		});
 		
-	}else{
+	}else if(tableState=="预约"){
+		$.ajax({
+			url:"/restaurant/waiter/takeTable",
+			data:{tableState:tableState,tableId:tableId},
+			type:"post",
+			success:function(msg){
+				console.log(msg);
+				if (msg.flag == -1) {
+					alert("已经就座，请刷新页面！"); 
+				} else {
+					alert("就座成功！"); 
+				}
+				window.location.href = "/restaurant/waiter/tableStatus";
+			},
+			error:function(XMLHttpRequest, textStatus, errorThrown) {
+			}
+		
+		});
+	}else if(tableState=="在吃"){
 		
 	}
 	

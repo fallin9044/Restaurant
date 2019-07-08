@@ -24,6 +24,7 @@ import restaurant.repository.DishRepository;
 import restaurant.repository.MenuRepository;
 import restaurant.repository.OrderStreamRepository;
 import restaurant.repository.PersonRepository;
+import restaurant.repository.ReservesRepository;
 import restaurant.utils.WebUtils;
 
 @Service
@@ -43,6 +44,9 @@ public class WaiterService  {
     
     @Autowired
     OrderStreamRepository orderStreamRepository;
+    
+    @Autowired
+    ReservesRepository reservesRepository;
 
 	public Object loadTableStatus() {
 		Map<String,Object> map= new HashMap<String, Object>();
@@ -68,10 +72,14 @@ public class WaiterService  {
 	}
 
 	@Transactional(isolation=Isolation.SERIALIZABLE)
-	public boolean takeTable(long tableId){
+	public boolean takeTable(long tableId,String tableState){
 		Dining dining = diningDAO.findById(tableId).get();
-		if(dining.getTableState()==0){
+		if(dining.getTableState()==0&&tableState.equals("空闲")){
 			diningDAO.takeTable(tableId);
+			return true;
+		}else if(dining.getTableState()==1&&tableState.equals("预约")){
+			diningDAO.takeTable(tableId);
+			reservesRepository.deleteById(tableId);
 			return true;
 		}else{
 			return false;

@@ -6,15 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import restaurant.entity.Dining;
-import restaurant.entity.Person;
-
-import java.util.List;
 
 
 public interface DiningRepositoryJPA extends JpaRepository<Dining, Long> {
 
 	@Modifying
-	@Query(value = "update Dining b set b.tableState=1 where b.tableId = :id")
+	@Query(value = "update Dining b set b.tableState=2 where b.tableId = :id")
 	public void takeTable(@Param("id") long id);
+	
 	
 }
