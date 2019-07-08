@@ -69,13 +69,11 @@
 			type:"post",
 			success:function(msg){
 				console.log(msg);
-				if (msg.authority != -1) {
-					if(msg.authority == 2){
-						window.location.href = "/restaurant/waiter/tableStatus";
-					}else{
-						window.location.href = "/restaurant/managerIndex";
-					}
-				} else {
+				if(msg.authority == 2){
+					window.location.href = "/restaurant/waiter/tableStatus";
+				}else if(msg.authority == 1){
+					window.location.href = "/restaurant/managerIndex";
+				}else{
 					alert("账号密码错误！"); 
 				}
 			},

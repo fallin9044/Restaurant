@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class PageValidationAOP {
-//shiro
-private static final String registerPage = "register";
-	
+	// shiro
+	private static final String registerPage = "redirect:register";
+
 	@Pointcut("execution(* restaurant.controller.*.*.*(..))")
 	public void waiterControllerJointPointExpression() {
 	}
@@ -28,7 +28,7 @@ private static final String registerPage = "register";
 		Object[] args = pjd.getArgs();
 		HttpSession session = (HttpSession) args[0];
 		try {
-			if(!WebUtils.pageValidate(session)){
+			if (!WebUtils.pageValidate(session)) {
 				throw new PageValidationException();
 			}
 			result = pjd.proceed();
@@ -37,10 +37,7 @@ private static final String registerPage = "register";
 			result = registerPage;
 		} catch (Throwable e) {
 		}
-		
-		Object obj = WebUtils.getSessionAttribute("personId");
-		System.out.println("personId是"+obj);
-		
+
 		return result;
 	}
 }

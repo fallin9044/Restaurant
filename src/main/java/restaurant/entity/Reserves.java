@@ -1,6 +1,7 @@
 package restaurant.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -26,10 +27,10 @@ public class Reserves implements Serializable {
 	private long tableId;
 
 	@Column(name = "reserveTime")
-	private int reserveTime;
-	
-	@Column(name ="reserveTele")
-	private int reserveTele;
+	private Timestamp reserveTime;
+
+	@Column(name = "reserveTele")
+	private String reserveTele;
 
 	public long getReserveId() {
 		return reserveId;
@@ -47,19 +48,19 @@ public class Reserves implements Serializable {
 		this.tableId = tableId;
 	}
 
-	public int getReserveTime() {
+	public Timestamp getReserveTime() {
 		return reserveTime;
 	}
 
-	public void setReserveTime(int reserveTime) {
+	public void setReserveTime(Timestamp reserveTime) {
 		this.reserveTime = reserveTime;
 	}
 
-	public int getReserveTele() {
+	public String getReserveTele() {
 		return reserveTele;
 	}
 
-	public void setReserveTele(int reserveTele) {
+	public void setReserveTele(String reserveTele) {
 		this.reserveTele = reserveTele;
 	}
 
@@ -67,13 +68,11 @@ public class Reserves implements Serializable {
 		super();
 	}
 
-	public Reserves(long reserveId, long tableId, int reserveTime, int reserveTele) {
+	public Reserves(long tableId, Timestamp reserveTime, String reserveTele) {
 		super();
-		this.reserveId = reserveId;
 		this.tableId = tableId;
 		this.reserveTime = reserveTime;
 		this.reserveTele = reserveTele;
 	}
 
-	
 }

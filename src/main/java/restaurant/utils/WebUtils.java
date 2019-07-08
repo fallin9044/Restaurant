@@ -1,26 +1,49 @@
 package restaurant.utils;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
+
+import restaurant.entity.Reserves;
 
 public class WebUtils {
 
-	public static <T> void getObjectList(List<T> org, List<T> target,int start,int count){
-		for(int i=start;i<start+count&&i<org.size();i++){
+	public static <T> void getObjectList(List<T> org, List<T> target, int start, int count) {
+		for (int i = start; i < start + count && i < org.size(); i++) {
 			target.add(org.get(i));
 		}
 	}
+
+	public static void getFirstReserve(List<Reserves> org, List<Reserves> target) {
+		Map<Long, Integer> tmp = new HashMap<>();
+		Integer index = 0;
+		for (Reserves res : org) {
+			if (tmp.get(res.getTableId()) == null) {
+				tmp.put(res.getTableId(), index);
+			} else {
+				Reserves temp = org.get(tmp.get(res.getTableId()));
+				if (res.getReserveTime().before(temp.getReserveTime())) {
+					tmp.replace(res.getTableId(), index);
+				}
+			}
+			index++;
+		}
+		for (Long key : tmp.keySet()) {
+			index = tmp.get(key);
+			target.add(org.get(index));
+		}
+	}
+
 	/**
 	 * 对页码进行操作
+	 * 
 	 * @author swhan wychen
-	 * @param start 默认0
+	 * @param start
+	 *            默认0
 	 * @param count
 	 * @param total
 	 * @return info[5]
@@ -34,15 +57,19 @@ public class WebUtils {
 			last = total - count;
 		else
 			last = total - total % count;
-		
+
 		int pagecount = start / count + 1;
- 		pre = pre < 0 ? 0 : pre;
+		pre = pre < 0 ? 0 : pre;
 		next = next > last ? last : next;
 		info[0] = next;
 		info[1] = pre;
 		info[2] = last;
 		info[3] = pagecount;
-		info[4] = total/count;
+		int tmp = total / count;
+		if ((total - tmp * count) != 0) {
+			tmp++;
+		}
+		info[4] = tmp;
 		return info;
 	}
 
@@ -53,34 +80,6 @@ public class WebUtils {
 			return false;
 		}
 		return true;
-	}
-
-	public static Object getSessionAttribute(String name) {
-		System.out.println("获取session的某一项的值");
-		HttpSession httpSession = getSession();
-		return httpSession.getAttribute(name);
-	}
-
-	public static void setSessionAttribute(String name, Object value) {
-		System.out.println("设置session的某一项的值");
-		HttpSession httpSession = getSession();
-		httpSession.setAttribute(name, value);
-	}
-
-	public static HttpSession getSession() {
-		System.out.println("获取session");
-		HttpSession session = null;
-		try {
-			session = getRequest().getSession();
-		} catch (Exception e) {
-		}
-		return session;
-	}
-
-	public static HttpServletRequest getRequest() {
-		System.out.println("获取request");
-		ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-		return attrs.getRequest();
 	}
 
 	public static Object setModelAndView(String viewname, Map<String, Object> map) {

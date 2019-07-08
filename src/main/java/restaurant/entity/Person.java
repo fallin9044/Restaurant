@@ -1,7 +1,6 @@
 package restaurant.entity;
 
 import java.io.Serializable;
-import java.sql.Blob;
 import java.sql.Timestamp;
 
 import javax.persistence.Basic;
@@ -11,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 
 /**
  *
@@ -69,9 +67,8 @@ public class Person implements Serializable {
 		this.personState = personState;
 		this.personTime = personTime;
 	}
-	
-	public Person(String personName, String password, int sex, String personTele, int authority,
-			int personState) {
+
+	public Person(String personName, String password, int sex, String personTele, int authority, int personState) {
 		super();
 		this.personName = personName;
 		this.password = password;

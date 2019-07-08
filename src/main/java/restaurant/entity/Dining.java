@@ -29,16 +29,19 @@ public class Dining implements Serializable {
 	@Column(name = "tableState")
 	private int tableState;
 
+	@Column(name = "startTime")
+	private Timestamp startTime;
 
 	public Dining() {
 		super();
 	}
 
-	public Dining(long tableId, int tableNum, int tableState) {
+	public Dining(long tableId, int tableNum, int tableState, Timestamp startTime) {
 		super();
 		this.tableId = tableId;
 		this.tableNum = tableNum;
 		this.tableState = tableState;
+		this.startTime = startTime;
 	}
 
 	public long getTableId() {
@@ -63,6 +66,14 @@ public class Dining implements Serializable {
 
 	public void setTableState(int tableState) {
 		this.tableState = tableState;
+	}
+
+	public Timestamp getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Timestamp startTime) {
+		this.startTime = startTime;
 	}
 
 }

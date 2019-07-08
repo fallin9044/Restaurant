@@ -22,16 +22,16 @@ public class OrderStream implements Serializable {
 	@Column(name = "orderId")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long orderId;
-	
+
 	@Column(name = "personId")
 	private long personId;
-	
+
 	@Column(name = "total")
 	private int total;
-	
+
 	@Column(name = "orderTime")
 	private Timestamp orderTime;
-	
+
 	@Column(name = "tableId")
 	private long tableId;
 

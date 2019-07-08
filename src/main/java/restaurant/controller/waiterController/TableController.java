@@ -19,9 +19,12 @@ public class TableController {
 	@Autowired
 	WaiterService waiterService;
 	
+	private static final String waiterTable = "tableStatus";
+	
 	@RequestMapping("/waiter/tableStatus")
-	public Object showTableStatus(HttpSession session){
-		return waiterService.loadTableStatus();
+	public Object showTableStatus(HttpSession session,
+			@RequestParam(value="start",required=false,defaultValue="0") int start){
+		return waiterService.loadTableStatus(waiterTable,start);
 	}
 	
 	@ResponseBody

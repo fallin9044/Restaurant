@@ -40,6 +40,12 @@ public interface PersonRepositoryJPA extends JpaRepository<Person, Long> {
 	
 	@Query(value = "select b from Person b where b.personState=1")
 	public List<Person> getWorkingPerson();
+	
+	@Modifying
+	@Query(value = "update Person b set b.personTime=CURTIME() where b.id = :id")
+	public void waiterWorkTime(@Param("id") long id);
 
-
+	@Query(value = "select b from Person b where b.id = :id and  to_days(b.personTime) = to_days(now())")
+	public List<Person> findByTimeAndId(@Param("id") long id);
+	
 }

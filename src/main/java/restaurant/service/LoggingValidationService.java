@@ -15,27 +15,29 @@ import restaurant.repository.PersonRepository;
 public class LoggingValidationService {
 
 	@Autowired
-    PersonRepository personRepository;
-	
+	PersonRepository personRepository;
+
 	@Transactional
-	public int findPerson(HttpSession session,String name,String password){
-		//数据库查询用户
+	public int findPerson(HttpSession session, String name, String password) {
+		// 数据库查询用户
 		List<Person> persons = personRepository.findByNamePassword(name, password);
-		if(persons.isEmpty()){
+		if (persons.size() == 0) {
 			return -1;
 		}
-		//用户权限
+		// 用户权限
 		int result = persons.get(0).getAuthority();
-		//设置session
+		// 设置session
 		session.setAttribute("personId", persons.get(0).getId());
-		//设置权限
+		// 设置权限
 		session.setAttribute("authority", persons.get(0).getAuthority());
-//		if(result==2){
-//			//服务员设置工作状态
-//			personRepository.waiterIsWork(persons.get(0).getId());
-//		}
-		//返回用户权限
+		if (result == 2) {
+			Long id = persons.get(0).getId();
+			persons = personRepository.findByTimeAndId(id);
+			if (persons.size() == 0) {
+				personRepository.waiterWorkTime(id);
+			}
+		}
 		return result;
 	}
-	
+
 }

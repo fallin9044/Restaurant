@@ -28,12 +28,14 @@
 						<th>几人桌</th>
 						<th>状态</th>
 						<th>操作</th>
-						<th>预约时间</th>
+						<th>预约时间/就餐时间</th>
+						<th>预约电话</th>
 						
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${requestScope.tablestatus}" var="table">
+						
 						<tr>
 							<td>${table.tableId}</td>
 							<td>${table.tableNum}</td>
@@ -41,15 +43,22 @@
 								<td>空闲</td>
 								<td onclick=getTableNum(this)><input type="submit" value="占座"/></td>
 								<td>无</td>
+								<td>无</td>
 							</c:if>
 							<c:if test="${table.tableState == '1'}">
-								<td>预约</td>
-								<td onclick=getTableNum(this)><input type="submit" value="就座"/></td>
-								<td>无</td>
+								<c:forEach items="${requestScope.reserves}" var="reserve">
+									<c:if test="${table.tableId ==reserve.tableId}">
+										<td>预约</td>
+										<td onclick=getTableNum(this)><input type="submit" value="就座"/></td>
+										<td>${reserve.reserveTime}</td>
+										<td>${reserve.reserveTele}</td>
+									</c:if>
+								</c:forEach>
 							</c:if>
 							<c:if test="${table.tableState == '2'}">
 								<td>在吃</td>
 								<td onclick=getTableNum(this)><input type="submit" value="点餐"/></td>
+								<td>${table.startTime}</td>
 								<td>无</td>
 							</c:if>
 							

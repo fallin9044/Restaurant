@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import restaurant.service.LoggingValidationService;
+import restaurant.service.managerService.ManagerService;
 import restaurant.service.waiterService.WaiterService;
 import restaurant.utils.WebUtils;
 
@@ -22,18 +23,21 @@ public class RegisterController {
 	private LoggingValidationService loggingValidationService;
 	@Autowired
 	WaiterService waiterService;
+	@Autowired
+	ManagerService managerService;
 	
 	private static final String registerPage = "register";
-	private static final String managerPage = "manager";
+	private static final String managerIndex = "redirect:manageIndex";
+	private static final String waiterTable = "redirect:waiter/tableStatus";
 	
 	@RequestMapping("/register")
 	public Object tryRegisterPage(HttpSession session){
 		if(WebUtils.pageValidate(session)){
 			int authority = (int) session.getAttribute("authority");
 			if(authority==2){
-				return waiterService.loadTableStatus();
+				return waiterTable;
 			}else{
-				return managerPage;
+				return managerIndex;
 			}
 		}
 		return registerPage;
@@ -41,8 +45,8 @@ public class RegisterController {
 	
 	@ResponseBody
 	@RequestMapping("/logging")
-	public Object loggingValidation(HttpSession session,@RequestParam(value="name",required = false, defaultValue = "*****") String user,
-			@RequestParam(value="password",required = false, defaultValue = "*****") String password){
+	public Object loggingValidation(HttpSession session,@RequestParam(value="name") String user,
+			@RequestParam(value="password") String password){
 		Map<String,Object> maps = new HashMap<>();
 		int result = loggingValidationService.findPerson(session, user, password);
 		//2表示服务员，1表示经理

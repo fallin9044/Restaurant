@@ -30,8 +30,8 @@ public class Menu implements Serializable {
 
 	@Column(name = "dishState")
 	private int dishState;
-	
-	@Column(name ="dishNumber")
+
+	@Column(name = "dishNumber")
 	private int dishNumber;
 
 	public int getDishNumber() {
@@ -44,8 +44,8 @@ public class Menu implements Serializable {
 
 	@Override
 	public String toString() {
-		return "{\"menuId\":" + menuId + ",\"dishId\":" + dishId + ",\"tableId\":" + tableId + ",\"dishState\":" + dishState
-				+ ",\"dishNumber\":" + dishNumber + "}";
+		return "{\"menuId\":" + menuId + ",\"dishId\":" + dishId + ",\"tableId\":" + tableId + ",\"dishState\":"
+				+ dishState + ",\"dishNumber\":" + dishNumber + "}";
 	}
 
 	public Menu() {
@@ -58,7 +58,7 @@ public class Menu implements Serializable {
 		this.dishId = dishId;
 		this.tableId = tableId;
 		this.dishState = dishState;
-		this.dishNumber=dishNumber;
+		this.dishNumber = dishNumber;
 	}
 
 	public long getMenuId() {

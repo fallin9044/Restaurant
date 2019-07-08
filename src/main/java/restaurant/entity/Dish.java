@@ -1,7 +1,6 @@
 package restaurant.entity;
 
 import java.io.Serializable;
-import java.sql.Blob;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -42,7 +41,7 @@ public class Dish implements Serializable {
 		super();
 	}
 
-	public Dish( String dishName, int dishPrice, String dishDesc, String dishPicture, int isrecommend) {
+	public Dish(String dishName, int dishPrice, String dishDesc, String dishPicture, int isrecommend) {
 		super();
 		this.dishName = dishName;
 		this.dishPrice = dishPrice;
