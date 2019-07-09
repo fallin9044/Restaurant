@@ -286,6 +286,7 @@ public class ManagerService {
 			}
 			
 		}
+		map.put("today", now);
 		map.put("dates", dates);
 		map.put("times", times);
 		

@@ -36,7 +36,7 @@
 		
 		<div class="title">
                 <h1>今日考勤</h1>
-                <button id = "addW_btn" type="button" class="btn btn-default">日期
+                <button  type="button" class="btn btn-default">${requestScope.today }
                 </button>
             </div>
 		<div>
@@ -46,7 +46,6 @@
 						<th>服务员编号</th>
 						<th>服务员姓名</th>
 						<th>是否打卡</th>
-						<th>打卡日期</th>
 						<th>打卡时间</th>
 					</tr>
 				</thead>
@@ -58,7 +57,6 @@
 						<td>${person.personName}</td>
 						<c:if test="${ifAttending[loop.count-1] == '出勤'}"><td style="color:#64ec22">${ifAttending[loop.count-1]}</td></c:if>
 						<c:if test="${ifAttending[loop.count-1] == '缺勤'}"><td>${ifAttending[loop.count-1]}</td></c:if>
-						<td>${dates[loop.count-1]}</td>
 						<td>${times[loop.count-1]}</td>
 					</tr>
 					</c:forEach>	
