@@ -26,6 +26,7 @@
                 <li role="presentation" class="list"><a href="/restaurant/manageDish">菜品管理</a></li>
                 <li role="presentation" class="list"><a href="/restaurant/manager/orderStream">流水管理</a></li>
                 <li role="presentation" class="list active"><a href="/restaurant/manage/table">餐桌管理</a></li>
+                <li role="presentation" id="waiter_exit_btn" class="list" style="float:right"><a href="javascript:void(0)">注销</a></li>
 			</ul>
 		</div>
 		<div class="modal fade" id="addTable" tabindex="-1" role="dialog"
@@ -127,6 +128,21 @@ $(function(){
 	if(time != ''){
 		$("#searchTime").val(time);
 	}
+	
+	$("#waiter_exit_btn").click(function(){
+		
+		$.ajax({
+			url:"/restaurant/waiter/exit",
+			data:{},
+			type:"post",
+			success:function(msg){
+				window.location.href = "/restaurant/register";
+			},
+			error:function(XMLHttpRequest, textStatus, errorThrown) {
+			}
+		
+		});
+	});
 })
 function addTable(){
 	

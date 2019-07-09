@@ -50,7 +50,6 @@
 </script>
 </head>
 
-<a href="/restaurant/waiter/tableStatus"><button type="button" class="btn btn-default"><h1>回去</h1></button></a>
 
 <body style="height: 100%;">
 	<div id="left" class="col-md-3 col-sm-3">
@@ -62,6 +61,7 @@
 
 		<div id="left_bottom"
 			class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10">
+				<a href="/restaurant/waiter/tableStatus"><返回</a>
 	<figure class="tabBlock" style="margin-top:30px">
 	<div class="tabBlock-tabs" >
     <div class="tabBlock-tab is-active" style="float:left">已点菜品</div>
@@ -77,6 +77,7 @@
      <span>总价：</span>
      <span id="totalMoney">0</span>
      <button type="button" class="btn btn-danger" style="float:right" onclick="settleAccount()">结算</button>
+     <button type="button" class="btn btn-danger" style="float:right" onclick="houhuiJiuCan()">取消就餐</button>
     </div>
     <div class="tabBlock-pane">
       <div class="tab-menu">
@@ -176,6 +177,31 @@ function settleAccount(){
 		});
 	}
 }
+
+function houhuiJiuCan(){
+	var money = $("#totalMoney").html();
+	if(money != '0'){
+		alert('还未结算')
+		return
+	}
+	var tableId='${requestScope.tableId}'
+	if(window.confirm('确认要取消吗？')){
+	$.ajax({
+		url:"/restaurant/waiter/houHui",
+		data:{
+			'tableId':tableId,
+		},
+		type:"post",
+		success:function(msg){
+			alert(msg);
+			location.href = '/restaurant/waiter/tableStatus';
+		},
+		error:function(XMLHttpRequest, textStatus, errorThrown) {
+		}
+	
+	});
+}
+};
 
 function addMenu(){
 
