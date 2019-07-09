@@ -30,9 +30,15 @@ public class OrderDishController {
 	
 	@RequestMapping("/waiter/settleAccount")
 	@ResponseBody
-	public Object settleAccount(HttpSession session,@RequestParam(value = "tableId",required = true, defaultValue = "1") long tableId,
+	public Object settleAccount(HttpSession session,@RequestParam(value = "tableId") long tableId,
 			@RequestParam(value="total",required = true) int total){
 		return waiterService.settleAccount(session,tableId,total);
+	}
+	
+	@RequestMapping("/waiter/houHui")
+	@ResponseBody
+	public Object settleAccount(HttpSession session,@RequestParam(value = "tableId") long tableId){
+		return waiterService.houHui(session,tableId);
 	}
 	
 	@RequestMapping("/waiter/changDishState")

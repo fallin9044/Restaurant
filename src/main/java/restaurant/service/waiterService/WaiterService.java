@@ -143,4 +143,15 @@ public class WaiterService {
 		}
 		return "success";
 	}
+	
+	@Transactional
+	public Object houHui(HttpSession session, long tableId) {
+		try {
+			System.out.println(tableId);
+			diningDAO.releaseTable(tableId);
+		} catch (Exception e) {
+			return "failed";
+		}
+		return "success";
+	}
 }
