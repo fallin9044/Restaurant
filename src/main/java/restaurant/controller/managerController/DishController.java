@@ -34,7 +34,7 @@ public class DishController {
 	ManagerService managerService;
 	
 	@RequestMapping("/manageDish")
-	public Object manageDish(HttpSession session,@RequestParam("start")int start){
+	public Object manageDish(HttpSession session,@RequestParam(value = "start",defaultValue = "0")int start){
 		return managerService.loadDish(manageDish,start);
 	}
 	

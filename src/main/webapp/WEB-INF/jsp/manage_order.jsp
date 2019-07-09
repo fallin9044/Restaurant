@@ -20,11 +20,11 @@
         
         <div class="header" >
             <ul class="nav nav-pills">
-                <li role="presentation" class="list"><a href="manage_index.html">服务员管理</a></li>
-                <li role="presentation" class="list"><a href="manage_check.html">考勤管理</a></li>
-                <li role="presentation" class="list"><a href="manage_advance.html">预定管理</a></li>
-                <li role="presentation" class="list"><a href="manage_dish.html">菜品管理</a></li>
-                <li role="presentation" class="list active"><a href="manage_order.html">流水管理</a></li>
+                <li role="presentation" class="list"><a href="/restaurant/managerIndex">服务员管理</a></li>
+                <li role="presentation" class="list"><a href="/restaurant/manager/check">考勤管理</a></li>
+                <li role="presentation" class="list"><a href="/restaurant/manageDish">菜品管理</a></li>
+                <li role="presentation" class="list active"><a href="/restaurant/manager/orderStream">流水管理</a></li>
+                <li role="presentation" class="list"><a href="/restaurant/manage/table">餐桌管理</a></li>
             </ul>
         </div>
     

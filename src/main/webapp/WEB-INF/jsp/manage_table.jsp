@@ -21,12 +21,11 @@
 		<!-- 导航栏 -->
 		<div class="header">
 			<ul class="nav nav-pills">
-				<li role="presentation" class="list active"><a
-					href="/restaurant/managerIndex">服务员管理</a></li>
-				<li role="presentation" class="list"><a href="#">考勤管理</a></li>
-				<li role="presentation" class="list"><a href="#">预定管理</a></li>
-				<li role="presentation" class="list"><a href="#">菜品管理</a></li>
-				<li role="presentation" class="list"><a href="#">流水管理</a></li>
+                <li role="presentation" class="list "><a href="/restaurant/managerIndex">服务员管理</a></li>
+                <li role="presentation" class="list"><a href="/restaurant/manager/check">考勤管理</a></li>
+                <li role="presentation" class="list"><a href="/restaurant/manageDish">菜品管理</a></li>
+                <li role="presentation" class="list"><a href="/restaurant/manager/orderStream">流水管理</a></li>
+                <li role="presentation" class="list active"><a href="/restaurant/manage/table">餐桌管理</a></li>
 			</ul>
 		</div>
 		<div class="modal fade" id="addTable" tabindex="-1" role="dialog"
@@ -75,6 +74,7 @@
 						<tr>
 							<th style="text-align: center;">餐桌编号</th>
 							<th style="text-align: center;">餐桌容量</th>
+							<th style="text-align: center;">就餐状态</th>
 							<th style="text-align: center;">删除</th>
 							<th style="text-align: center;">预约管理</th>
 						</tr>
@@ -85,7 +85,13 @@
 						<c:forEach items="${requestScope.tables}" var="table">
 							<tr>
 								<td>${table.tableId}</td>
-								<td>${table.tableNum}</td>
+								<td>${table.tableNum}人</td>
+								<c:if test="${table.tableState != '2'}">
+								<td>非就餐</td>
+								</c:if>
+								<c:if test="${table.tableState == '2'}">
+								<td style="color:#fe1111">就餐中</td>
+								</c:if>
 								<td> 
 									<button type="button" class="btn btn-default"
 										onclick="deleteTable(${table.tableId})">删除</button>
