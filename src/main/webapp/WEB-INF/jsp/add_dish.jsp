@@ -21,8 +21,8 @@
             <ul class="nav nav-pills">、
                 <li role="presentation" class="list"><a href="/restaurant/managerIndex">服务员管理</a></li>
                 <li role="presentation" class="list"><a href="/restaurant/manager/check">考勤管理</a></li>
-                <li role="presentation" class="list"><a href="/restaurant/manageDish">菜品管理</a></li>
-                <li role="presentation" class="list active"><a href="/restaurant/manager/orderStream">流水管理</a></li>
+                <li role="presentation" class="list active"><a href="/restaurant/manageDish">菜品管理</a></li>
+                <li role="presentation" class="list"><a href="/restaurant/manager/orderStream">流水管理</a></li>
                 <li role="presentation" class="list"><a href="/restaurant/manage/table">餐桌管理</a></li>
                 <li role="presentation" id="waiter_exit_btn" class="list" style="float:right"><a href="javascript:void(0)">注销</a></li>                
             </ul>
@@ -56,10 +56,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword" class="col-sm-3 control-label">图片名称</label>
+                        <label for="inputPassword" class="col-sm-3 control-label">菜品图片</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="picture"
-                                placeholder="请输入图片路径">
+                            <input type="file" id="picture" name="file">
                         </div>
                     </div>
                     <div class="form-group">
@@ -107,7 +106,8 @@ $("#waiter_exit_btn").click(function(){
 		var name = $("#name").val();
 		var price = $("#price").val();
 		var desc = $("#desc").val();
-		var picture = $("#picture").val();
+		var picture = $("#picture")[0].files[0];
+		var pictureName = new Date().getTime();
 		var recommend = $("#recommend").val();
 		
 		
@@ -123,8 +123,8 @@ $("#waiter_exit_btn").click(function(){
 			alert("请输入菜品描述！");
 			return;
 		}
-		if(picture==""||picture==null){
-			alert("请输入菜品的图片名称！");
+		if(picture==null){
+			alert("请上传菜品图片！");
 			return;
 		}
 		if(recommend!="是"&&recommend!="否"){
@@ -136,11 +136,20 @@ $("#waiter_exit_btn").click(function(){
 			else
 				recommend = 0;
 		}
-		
+		console.log(pictureName)
+		var formdata = new FormData();
+		formdata.append("dishName", name);
+		formdata.append("dishPrice",price);
+		formdata.append("dishDesc",desc);
+		formdata.append("dishPicture", pictureName);
+		formdata.append("isrecommend", recommend);
+		formdata.append("picture",picture);
 		$.ajax({
 			url:"/restaurant/addDish",
-			data:{dishName:name,dishPrice:price,dishDesc:desc,dishPicture:picture,isrecommend:recommend},
+			data:formdata,
 			type:"post",
+			contentType: false,
+			processData: false,
 			success:function(msg){
 				console.log(msg.isrepeat);
 				if (msg.isrepeat == 0) {

@@ -103,7 +103,7 @@
 		<div id="right_mid" class=" col-md-12 col-sm-12">
 				<c:forEach items="${requestScope.dishes}" var="dish">
 					<div id="menu_item" > <img height="154.5" width="250"
-							src="/restaurant/images/w-logo.jpg" />
+							src="/restaurant/dishImages/${dish.dishPicture}.jpg" />
 						
 						<div style="float: left;padding-top:8px;"><span style="font-weight: 900">${dish.dishName}(￥${dish.dishPrice})</span></div>
 						<button type="button" class="btn btn-danger" style="margin-right:4px;border-radius: 22px;width: 34px;height: 34px;"

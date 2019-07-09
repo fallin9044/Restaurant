@@ -56,10 +56,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword" class="col-sm-3 control-label">图片名称</label>
+                        <label for="inputPassword" class="col-sm-3 control-label">菜品图片</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="picture"
-                                value="${requestScope.dish.dishPicture}">
+                            <input type="file" id="picture" name="file">
                         </div>
                     </div>
                     <div class="form-group">
@@ -108,7 +107,8 @@ $("#waiter_exit_btn").click(function(){
 		var name = $("#name").val();
 		var price = $("#price").val();
 		var desc = $("#desc").val();
-		var picture = $("#picture").val();
+		var picture = $("#picture")[0].files[0];
+		var pictureName='${requestScope.dish.dishPicture}';
 		var recommend = $("#recommend").val();
 		var id = "${requestScope.dish.dishId}"
 		
@@ -125,10 +125,6 @@ $("#waiter_exit_btn").click(function(){
 			alert("请输入菜品描述！");
 			return;
 		}
-		if(picture==""||picture==null){
-			alert("请输入菜品的图片名称！");
-			return;
-		}
 		if(recommend!="是"&&recommend!="否"){
 			alert("请输入菜品是/否被推荐！");
 			return;
@@ -138,11 +134,21 @@ $("#waiter_exit_btn").click(function(){
 			else
 				recommend = 0;
 		}
+		var formdata = new FormData();
+		formdata.append("dishName", name);
+		formdata.append("dishPrice",price);
+		formdata.append("dishDesc",desc);
+		formdata.append("dishPicture", pictureName);
+		formdata.append("isrecommend", recommend);
+		formdata.append("picture",picture);
+		formdata.append("dishId",id);
 		
 		$.ajax({
 			url:"/restaurant/editDish",
-			data:{dishId:id,dishName:name,dishPrice:price,dishDesc:desc,dishPicture:picture,isrecommend:recommend},
+			data:formdata,
 			type:"post",
+			contentType: false,
+			processData: false,
 			success:function(msg){
 				console.log(msg);
 				if (msg.isrepeat == 0) {

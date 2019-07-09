@@ -56,7 +56,7 @@
 							<td>${dish.dishPrice}</td>
 							<td>${dish.dishDesc}</td>
 							<td>${dish.isrecommend}</td>
-							<td><button type="button" class="btn btn-default" onclick="edit(${dish.dishName})">
+							<td><button type="button" class="btn btn-default" onclick="edit('${dish.dishName}')">
 							edit</button>
                             <button  type="button" class="btn btn-default" onclick="delete1(${dish.dishId})">
                             delete</button>

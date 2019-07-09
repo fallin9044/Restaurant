@@ -1,5 +1,7 @@
 package restaurant.controller.managerController;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import restaurant.entity.Dish;
 import restaurant.service.managerService.ManagerService;
@@ -48,7 +51,9 @@ public class DishController {
 	@RequestMapping("/editDish")
 	public Object editDish(HttpSession session,@RequestParam(value="dishName") String dishName,
 			@RequestParam(value="dishPrice")int dishPrice,@RequestParam(value="dishDesc") String dishDesc,
-			@RequestParam(value="dishPicture") String dishPicture,@RequestParam(value="isrecommend") int isrecommend
+			@RequestParam(value="dishPicture") String dishPicture,
+			@RequestParam(value="picture",required = false) MultipartFile picture,
+			@RequestParam(value="isrecommend") int isrecommend
 			,@RequestParam(value="dishId") long dishId){
 		Map<String,Object> maps = new HashMap<>();
 		List<Dish> d= managerService.findbyname(dishName);
@@ -61,6 +66,15 @@ public class DishController {
 		System.out.println("---------flag"+flag);
 		if(flag==0)
 		{
+			if(picture!=null) {
+			String resource = System.getProperty("user.dir")+"/src/main/resources/static/dishImages/";
+	        File dest = new File(resource + dishPicture+".jpg");
+
+	        try {
+	            picture.transferTo(dest);
+	        } catch (IOException e) {
+	            flag=1;
+	        }}
 			System.out.println("*******");
             managerService.updateDish(dishId,dishName, dishPrice, dishDesc,dishPicture, isrecommend);
 		}
@@ -87,17 +101,31 @@ public class DishController {
 	@ResponseBody
 	public Object addDish(HttpSession session,@RequestParam(value="dishName") String dishName,
 			@RequestParam(value="dishPrice")int dishPrice,@RequestParam(value="dishDesc") String dishDesc,
+			@RequestParam(value="picture") MultipartFile picture,
 			@RequestParam(value="dishPicture") String dishPicture,@RequestParam(value="isrecommend") int isrecommend){
 		Map<String,Object> maps = new HashMap<>();
-		List<Dish> d= managerService.findbyname(dishName);
+		System.out.println(dishPicture);
 		int flag = 0;
+		
+		List<Dish> d= managerService.findbyname(dishName);
+		
 		if(d.size()>0)
 		{
 			flag = 1; 
 			//System.out.println("已经存在菜品了");
 		}
+		System.out.println(d.size());
 		if(flag==0)
 		{
+			//添加图片
+			String resource = System.getProperty("user.dir")+"/src/main/resources/static/dishImages/";
+	        File dest = new File(resource + dishPicture+".jpg");
+
+	        try {
+	            picture.transferTo(dest);
+	        } catch (IOException e) {
+	            flag=1;
+	        }
 			//System.out.println("正在加入------");
             managerService.addNewDish(dishName, dishPrice, dishDesc,dishPicture, isrecommend);
 		}
