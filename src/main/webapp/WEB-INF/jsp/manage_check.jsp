@@ -33,8 +33,14 @@
 
 		<!-- 每天的签到表格  -->
 		<div class="sheet">
+		
+		<div class="title">
+                <h1>今日考勤</h1>
+                <button id = "addW_btn" type="button" class="btn btn-default">日期
+                </button>
+            </div>
+		<div>
 			<table class="table table-striped">
-			<caption><h3 align="center">签到管理</h3></caption>
 				<thead>
 					<tr>
 						<th>服务员编号</th>
@@ -60,7 +66,7 @@
 				</tbody>
 			</table>
 			<!-- 翻页 -->
-			             <div align="center">
+			 <div align="center">
                 <ul class="pagination">
                    <li><a href="?start=0">首页</a></li>
                    <li><a href="?start=${requestScope.pre}">上一页</a></li>
@@ -69,6 +75,7 @@
                    <li><a href="?start=${requestScope.last}">末 页</a></li>
                 </ul>
               </div>
+		</div>
 		</div>
 
 

@@ -18,7 +18,7 @@
     <!-- 顶部导航栏  -->
     <div class="background" > 
         <div class="header" >
-            <ul class="nav nav-pills">、
+            <ul class="nav nav-pills">
                 <li role="presentation" class="list active"><a href="/restaurant/managerIndex">服务员管理</a></li>
                 <li role="presentation" class="list"><a href="/restaurant/manager/check">考勤管理</a></li>
                 <li role="presentation" class="list"><a href="/restaurant/manageDish">菜品管理</a></li>
