@@ -49,7 +49,7 @@ public class WaiterService {
 	@Autowired
 	ReservesRepository reservesRepository;
 
-	public Object loadTableStatus(String waiterPage,int start) {
+	public Object loadTableStatus(String waiterPage, int start) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Dining> dinings = diningDAO.findAll();
 		List<Dining> diningList = new ArrayList<>();
@@ -58,8 +58,8 @@ public class WaiterService {
 		map.put("next", info[0]);
 		map.put("pre", info[1]);
 		map.put("last", info[2]);
-		map.put("count",info[3]);
-		map.put("total",info[4]);
+		map.put("count", info[3]);
+		map.put("total", info[4]);
 		map.put("tablestatus", diningList);
 		List<Reserves> reserves = reservesRepository.twoHourInterval();
 		List<Reserves> reservesList = new ArrayList<>();
@@ -84,11 +84,10 @@ public class WaiterService {
 
 	@Transactional(isolation = Isolation.SERIALIZABLE)
 	public boolean takeTable(long tableId, String tableState) {
-		Dining dining = diningDAO.findById(tableId).get();
-		if (dining.getTableState() == 0 && tableState.equals("空闲")) {
+		if (tableState.equals("空闲")) {
 			diningDAO.takeTable(tableId);
 			return true;
-		} else if (dining.getTableState() == 1 && tableState.equals("预约")) {
+		} else if (tableState.equals("预约")) {
 			diningDAO.takeTable(tableId);
 			reservesRepository.deleteById(tableId);
 			return true;

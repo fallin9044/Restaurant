@@ -14,7 +14,7 @@ import restaurant.entity.Dining;
 public interface DiningRepositoryJPA extends JpaRepository<Dining, Long> {
 
 	@Modifying
-	@Query(value = "update Dining b set b.tableState=2 where b.tableId = :id")
+	@Query(value = "update dining set table_state=2,start_time=now() where table_id = :id",nativeQuery=true)
 	public void takeTable(@Param("id") long id);
 	
 	@Modifying
