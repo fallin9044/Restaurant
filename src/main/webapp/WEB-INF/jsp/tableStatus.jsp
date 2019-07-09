@@ -6,21 +6,25 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/restaurant/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/restaurant/css/main.css">
+
 <script type="text/javascript" src="/restaurant/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/restaurant/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>服务员选桌子页面</title>
 </head>
 <body>
-	<ul class="nav nav-pills">
-  <li role="presentation" class="active"><a href="#">Home</a></li>
-  <li role="presentation"><a href="#">Profile</a></li>
-  <li role="presentation"><a href="#">Messages</a></li>
-  <input type="submit" id="waiter_exit_btn" value="Exit"/>
-</ul>
-	<div class="container">
-		<div class="row">
-		<div class="col-md-8 col-lg-8 col-md-offset-4 col-lg-offset-4">
-			<table class="table table-striped">
+	<input type="submit" id="waiter_exit_btn" value="Exit"/>
+
+    <div class="background" >
+        
+        <div class="header" style="height:20%;text-align: center;font-size: 50px;">
+            顾客是上帝
+        </div>
+        
+        <div class="mid-body" style="margin-top: 11%;">
+            <!-- 每天的签到表格  -->
+			<div class="sheet" style="margin-top: 1%;">
+				<table class="table table-striped">
 				<caption>餐桌状态</caption>
 				<thead>
 					<tr>
@@ -66,9 +70,27 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</div>
-		</div>
-	</div>
+			<!-- 翻页 -->
+				<div align="center">
+	                <ul class="pagination">
+	                   <li><a href="?start=0">首页</a></li>
+	                   <li><a href="?start=${requestScope.pre}">上一页</a></li>
+	                   <li><a>${requestScope.count}/${requestScope.total}</a></li>
+	                   <li><a href="?start=${requestScope.next}">下一页</a></li>
+	                   <li><a href="?start=${requestScope.last}">末 页</a></li>
+	                </ul>
+            	</div>
+			
+			</div>
+            
+        </div>
+    
+    
+        <div class="footer" >
+            <p align="center">西安"海上捞"空中花园餐厅 2019 Powered by wychen</p>
+        </div>
+
+    </div>
 </body>
 
 <script type="text/javascript">
