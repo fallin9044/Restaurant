@@ -18,9 +18,9 @@ public class LoggingValidationService {
 	PersonRepository personRepository;
 
 	@Transactional
-	public int findPerson(HttpSession session, String name, String password) {
+	public int findPerson(HttpSession session, String tele, String password) {
 		// 数据库查询用户
-		List<Person> persons = personRepository.findByNamePassword(name, password);
+		List<Person> persons = personRepository.findByTelePassword(tele, password);
 		if (persons.size() == 0) {
 			return -1;
 		}

@@ -45,10 +45,10 @@ public class RegisterController {
 	
 	@ResponseBody
 	@RequestMapping("/logging")
-	public Object loggingValidation(HttpSession session,@RequestParam(value="name") String user,
+	public Object loggingValidation(HttpSession session,@RequestParam(value="tele") String tele,
 			@RequestParam(value="password") String password){
 		Map<String,Object> maps = new HashMap<>();
-		int result = loggingValidationService.findPerson(session, user, password);
+		int result = loggingValidationService.findPerson(session, tele, password);
 		//2表示服务员，1表示经理
 		maps.put("authority", result);
 		return maps;

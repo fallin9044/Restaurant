@@ -31,7 +31,7 @@
                             <img src="/restaurant/images/w-logo.jpg" style="width:70%;margin-top: 2%;">
                         </span>
                         <div class="form-group">
-                            <input type="text" id="name" class="form-control"  placeholder="账号">
+                            <input type="text" id="tele" class="form-control"  placeholder="账号">
                             <i class="fa fa-user"></i>
                         </div>
                         <div class="form-group help">
@@ -52,9 +52,9 @@
 <script type="text/javascript">
 	$("#user_logging_btn").click(function(){
 	
-		var name = $("#name").val();
+		var tele = $("#tele").val();
 		var password = $("#password").val();
-		if(name==null||name==''){
+		if(tele==null||tele==''){
 			alert("您没有输入账号名！");
 			return;
 		}
@@ -65,7 +65,7 @@
 		
 		$.ajax({
 			url:"/restaurant/logging",
-			data:{name:name,password:password},
+			data:{tele:tele,password:password},
 			type:"post",
 			success:function(msg){
 				console.log(msg);
