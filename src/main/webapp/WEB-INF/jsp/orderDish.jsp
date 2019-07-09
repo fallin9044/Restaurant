@@ -50,7 +50,7 @@
 </script>
 </head>
 
-
+<a href="/restaurant/waiter/tableStatus"><button type="button" class="btn btn-default"><h1>回去</h1></button></a>
 
 <body style="height: 100%;">
 	<div id="left" class="col-md-3 col-sm-3">
