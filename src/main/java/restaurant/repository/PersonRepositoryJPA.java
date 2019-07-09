@@ -38,7 +38,7 @@ public interface PersonRepositoryJPA extends JpaRepository<Person, Long> {
 	public void editinfo(@Param("id") long id,@Param("name") String name,@Param("sex") int sex,
 			@Param("telephone") String telephone,@Param("password") String password);
 	
-	@Query(value = "select b from Person b where b.personState=1")
+	@Query(value = "select b from Person b where b.personState=1 and b.authority = 2")
 	public List<Person> getWorkingPerson();
 	
 	@Modifying

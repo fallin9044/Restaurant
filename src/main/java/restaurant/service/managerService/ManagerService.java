@@ -1,6 +1,7 @@
 package restaurant.service.managerService;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,13 +17,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import restaurant.entity.Dining;
 import restaurant.entity.Dish;
 import restaurant.entity.Person;
+import restaurant.entity.Reserves;
+import restaurant.repository.DiningRepository;
 import restaurant.repository.DishRepository;
 import restaurant.entity.OrderStream;
 import restaurant.entity.Person;
 import restaurant.repository.OrderStreamRepository;
 import restaurant.repository.PersonRepository;
+import restaurant.repository.ReservesRepository;
 import restaurant.utils.WebUtils;
 
 @Service
@@ -34,7 +39,11 @@ public class ManagerService {
 	@Autowired
 	DishRepository dishDAO;
 	
-
+	@Autowired
+	ReservesRepository reservesDAO;
+	
+	@Autowired
+	DiningRepository diningDAO;
 	
 	/**
 	 * 根据Id删除一个菜
@@ -233,11 +242,19 @@ public class ManagerService {
 		return WebUtils.setModelAndView("manage_order", map);
 	}
 
-	public Object getPerson(){
-		//person
-		List<Person> persons =personDAO.getWorkingPerson();
+	public Object getPerson(int start){
 		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("persons",persons);
+		//person
+		List<Person> personList =personDAO.getWorkingPerson();
+		List<Person> personForm = new ArrayList<>();
+		WebUtils.getObjectList(personList, personForm, start, 6);
+		int[] info = WebUtils.getPagingInfo(start, 6, personList.size());
+		map.put("next", info[0]);
+		map.put("pre", info[1]);
+		map.put("last", info[2]);
+		map.put("count", info[3]);
+		map.put("total", info[4]);
+		map.put("persons", personForm);
 		//get now
 		Date day=new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
@@ -248,17 +265,26 @@ public class ManagerService {
 		List<String> dates=new ArrayList<>();
 		List<String> times=new ArrayList<>();
 		List<String> ifAttending=new ArrayList<>(); 
-		for(Person person :persons){
-			String str 
-			= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(person.getPersonTime());
+
+		for(Person person :personForm){
+			if(person.getPersonTime() != null) {
+			String str = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(person.getPersonTime());
+
 			StringTokenizer stringTokenizer=new StringTokenizer(str);
 			String date=stringTokenizer.nextToken();
-			dates.add(date);
-			times.add(stringTokenizer.nextToken());
 			if(date.equals(now)){
 				ifAttending.add("出勤");
+				dates.add(date);
+				times.add(stringTokenizer.nextToken());
 			}
 			else ifAttending.add("缺勤");
+			}
+			else {
+			dates.add("");
+			times.add("");
+			ifAttending.add("缺勤");
+			}
+			
 		}
 		map.put("dates", dates);
 		map.put("times", times);
@@ -410,5 +436,91 @@ public class ManagerService {
 
 		return flag;
 		
+	}
+	public Object loadTables(String root) {
+		Map<String,Object> map= new HashMap<String, Object>();
+		List<Dining> tablesDinings=diningDAO.findAll();
+		map.put("tables", tablesDinings);
+		return 	WebUtils.setModelAndView(root, map);
+	}
+	
+	@Transactional
+	public Object addTable(long id, int number) {
+		Optional<Dining> res= diningDAO.findById(id);
+		if(res.isPresent())return 0;
+		else {
+			diningDAO.save(new Dining(id, number, 0,null));
+		}
+		return 1;
+	}
+	
+	@Transactional
+	public Object deleteTable(long id) {
+		try{
+			diningDAO.deleteById(id);
+		}catch(Exception e) {
+			return 0;
+		}
+		return 1;
+	}
+	
+
+
+	public Object loadReserves(String managereserve, long tableId) {
+		Map<String,Object> map= new HashMap<String, Object>();
+		List<Reserves> reserves=reservesDAO.findByTableId(tableId);
+		map.put("reserves",reserves );
+		map.put("tableId", tableId);
+		return WebUtils.setModelAndView(managereserve, map);
+	}
+
+	@Transactional
+	public Object isAbleReserve(String time, String tele,long tableId) {
+		SimpleDateFormat x=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		try {
+			Date reserveTime =x.parse(time);
+			System.out.println(time);
+			Timestamp timestamp=new Timestamp(reserveTime.getTime());
+			List<Reserves> res=reservesDAO.twoHourInterval(tableId,reserveTime);
+			if(res.size()>0)return 0;
+			List<Dining> tabs = diningDAO.isAbleReserve(tableId,reserveTime);
+			if(tabs.size()>0)return 0;
+			reservesDAO.saveAndFlush(new Reserves(tableId, timestamp, tele));
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return 0;
+		}
+		return 1;
+	}
+	
+	@Transactional
+	public Object deleteReserve(long id) {
+		try{
+			reservesDAO.deleteById(id);
+		}catch(Exception e) {
+			return 0;
+		}
+		return 1;
+	}
+
+	public Object loadSearchedTable(String managereserve, String time) {
+		SimpleDateFormat x=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		List<Dining> tablesDinings=diningDAO.findAll();
+		List<Dining> tablesres=new ArrayList<Dining>();
+		Date date;
+		Map<String,Object> map= new HashMap<String, Object>();
+		try {
+			date = x.parse(time);		
+		for(Dining a:tablesDinings) {
+			if(diningDAO.isAbleReserve(a.getTableId(),date).size()==0&&reservesDAO.twoHourInterval(a.getTableId(), date).size()==0)
+				tablesres.add(a);
+		}
+		map.put("datetime",time.replaceFirst(" ", "T"));
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		map.put("tables", tablesres);
+
+		return 	WebUtils.setModelAndView(managereserve, map);
 	}
 }

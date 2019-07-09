@@ -53,7 +53,8 @@
 					<tr>
 					    <td>${person.id}</td>
 						<td>${person.personName}</td>
-						<td>${ifAttending[loop.count-1]}</td>
+						<c:if test="${ifAttending[loop.count-1] == '出勤'}"><td style="color:#64ec22">${ifAttending[loop.count-1]}</td></c:if>
+						<c:if test="${ifAttending[loop.count-1] == '缺勤'}"><td>${ifAttending[loop.count-1]}</td></c:if>
 						<td>${dates[loop.count-1]}</td>
 						<td>${times[loop.count-1]}</td>
 					</tr>
@@ -62,17 +63,15 @@
 				</tbody>
 			</table>
 			<!-- 翻页 -->
-			<div align="right">
-				<ul class="pagination">
-					<li><a href="#">&laquo;</a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">&raquo;</a></li>
-				</ul>
-			</div>
+			             <div align="center">
+                <ul class="pagination">
+                   <li><a href="?start=0">首页</a></li>
+                   <li><a href="?start=${requestScope.pre}">上一页</a></li>
+                   <li><a>${requestScope.count}/${requestScope.total}</a></li>
+                   <li><a href="?start=${requestScope.next}">下一页</a></li>
+                   <li><a href="?start=${requestScope.last}">末 页</a></li>
+                </ul>
+              </div>
 		</div>
 
 

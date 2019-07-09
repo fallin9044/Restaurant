@@ -125,6 +125,7 @@ public class WaiterService {
 	public String settleAccount(HttpSession session, long tableId, int total) {
 		try {
 			Timestamp now = new Timestamp(System.currentTimeMillis());
+			diningDAO.releaseTable(tableId);
 			OrderStream orderStream = new OrderStream(0, (Long) session.getAttribute("personId"), total, now, tableId);
 			menuRepository.deleteByTableId(tableId);
 			orderStreamRepository.saveAndFlush(orderStream);
