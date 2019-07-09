@@ -97,7 +97,7 @@ function getTableNum(element){
 		});
 		
 	}else if(tableState=="在吃"){
-		
+		window.location.href = "/restaurant/waiter/orderDish?tableId="+tableId;
 	}
 	
 }</script>
