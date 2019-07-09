@@ -13,12 +13,12 @@
 <title>服务员选桌子页面</title>
 </head>
 <body>
-	<input type="submit" id="waiter_exit_btn" value="Exit"/>
 
     <div class="background" >
         
         <div class="header" style="height:20%;text-align: center;font-size: 50px;">
             顾客是上帝
+            <button type="submit" id="waiter_exit_btn">登出</button>
         </div>
         
         <div class="mid-body" style="margin-top: 11%;">

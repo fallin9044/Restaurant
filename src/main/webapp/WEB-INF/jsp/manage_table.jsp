@@ -63,12 +63,13 @@
 			<div class="title">
 				<h1>餐桌列表</h1>
 				<button id="addW_btn" type="button" class="btn btn-default"
-					data-toggle="modal" data-target="#addTable">添加餐桌</button>
+					data-toggle="modal" data-target="#addTable" style="margin-left:20%;">添加餐桌</button>
+					<div style="float:right">
+					<p style="font-size:18px;">按时间查询可预约餐桌</p>
+					<input type="datetime-local" id="searchTime"><button class="btn btn-default" onclick="searchTable()" style="height:30px">搜索</button>
+					</div>
 			</div>
-			<div style="float:right">
-			<p>按时间查询可预约餐桌</p>
-			<input type="datetime-local" id="searchTime"><button class="btn btn-default" onclick="searchTable()" style="height:30px">搜索</button>
-			</div>
+			
 			<div>
 				<table class="table table-striped" style="text-align: center;">
 					<thead>
