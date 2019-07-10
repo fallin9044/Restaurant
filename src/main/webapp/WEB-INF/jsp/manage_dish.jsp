@@ -53,13 +53,14 @@
 							<td>${dish.dishId}</td>
 							<td>${dish.dishName}</td>
 							<td>${dish.dishPrice}</td>
-							<td>${dish.isrecommend}</td>
+							<c:if test="${dish.isrecommend=='1'}"><td>是</td></c:if>
+							<c:if test="${dish.isrecommend=='0'}"><td>否</td></c:if>
 							<td><button type="button" class="btn btn-default" onclick="edit('${dish.dishName}')">
-							edit</button>
+							编辑</button>
                             <button  type="button" class="btn btn-default" onclick="delete1(${dish.dishId})">
-                            delete</button>
+                            删除</button>
 		                    <button  type="button" class="btn btn-default" onclick="changeRecommend(${dish.dishId})">
-                            recommend</button>
+                            更改推荐状态</button>
                             </td>
 						</tr>
 					</c:forEach>

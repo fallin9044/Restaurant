@@ -42,7 +42,6 @@ public class EditWaiterController {
 		
 		Map<String,Object> maps = new HashMap<>();
 		int flag = managerService.updatePerson(waiterid, waitername, sex, telephone, password);
-		System.out.print("dsfadfasdfdasfa"+flag);
 		maps.put("isrepeat",flag);
 		return maps;
 	}

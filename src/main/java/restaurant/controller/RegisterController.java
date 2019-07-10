@@ -54,4 +54,12 @@ public class RegisterController {
 		return maps;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/waiter/exit")
+	public Object exitLogging(HttpSession session){
+		Map<String,Object> maps = new HashMap<>();
+		waiterService.exitLogging(session);
+		return maps;
+	}
+	
 }

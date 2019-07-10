@@ -49,7 +49,9 @@ public class WaiterService {
 	@Autowired
 	ReservesRepository reservesRepository;
 
+	@Transactional
 	public Object loadTableStatus(String waiterPage, int start) {
+		reservesRepository.deleteOverTimeReserve();
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Dining> dinings = diningDAO.findAll();
 		List<Dining> diningList = new ArrayList<>();
@@ -83,13 +85,13 @@ public class WaiterService {
 	}
 
 	@Transactional(isolation = Isolation.SERIALIZABLE)
-	public boolean takeTable(long tableId, String tableState) {
+	public boolean takeTable(long tableId, String tableState,long reserveId) {
 		if (tableState.equals("空闲")) {
 			diningDAO.takeTable(tableId);
 			return true;
 		} else if (tableState.equals("预约")) {
 			diningDAO.takeTable(tableId);
-			reservesRepository.deleteById(tableId);
+			reservesRepository.deleteById(reserveId);
 			return true;
 		} else {
 			return false;
@@ -127,6 +129,10 @@ public class WaiterService {
 			diningDAO.releaseTable(tableId);
 			OrderStream orderStream = new OrderStream(0, (Long) session.getAttribute("personId"), total, now, tableId);
 			menuRepository.deleteByTableId(tableId);
+			if(reservesRepository.findByTableId(tableId).size()==0) {
+				diningDAO.releaseTableWithNoReserve(tableId);
+			}else diningDAO.takeTableWithReserve(tableId);
+
 			orderStreamRepository.saveAndFlush(orderStream);
 		} catch (Exception e) {
 			return "failed";
@@ -149,6 +155,9 @@ public class WaiterService {
 		try {
 			System.out.println(tableId);
 			diningDAO.releaseTable(tableId);
+			if(reservesRepository.findByTableId(tableId).size()==0) {
+				diningDAO.releaseTableWithNoReserve(tableId);
+			}else diningDAO.takeTableWithReserve(tableId);
 		} catch (Exception e) {
 			return "failed";
 		}

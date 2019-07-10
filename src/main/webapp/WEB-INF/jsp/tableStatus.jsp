@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -46,7 +47,7 @@
 							<td>${table.tableNum}</td>
 							<c:if test="${table.tableState == '0'}">
 								<td>空闲</td>
-								<td onclick=getTableNum(this)><input type="submit" value="占座"/></td>
+								<td onclick=getTableNum(this,0)><input type="submit" value="占座"/></td>
 								<td>无</td>
 								<td>无</td>
 							</c:if>
@@ -54,8 +55,8 @@
 								<c:forEach items="${requestScope.reserves}" var="reserve">
 									<c:if test="${table.tableId ==reserve.tableId}">
 										<td>预约</td>
-										<td onclick=getTableNum(this)><input type="submit" value="就座"/></td>
-										<td>${reserve.reserveTime}</td>
+										<td onclick=getTableNum(this,'${reserve.reserveId}')><input type="submit" value="就座"/></td>
+										<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${reserve.reserveTime}" /></td>
 										<td>${reserve.reserveTele}</td>
 									</c:if>
 								</c:forEach>
@@ -63,7 +64,7 @@
 							<c:if test="${table.tableState == '2'}">
 								<td>在吃</td>
 								<td onclick=getTableNum(this)><input type="submit" value="点餐"/></td>
-								<td>${table.startTime}</td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${table.startTime}" /></td>
 								<td>无</td>
 							</c:if>
 							
@@ -95,7 +96,7 @@
 </body>
 
 <script type="text/javascript">
-function getTableNum(element){
+function getTableNum(element,reserveId){
 
 	var tableId = $(element.parentElement).children("td").eq(0).html();
 	var tableState = $(element.parentElement).children("td").eq(2).html();
@@ -103,7 +104,7 @@ function getTableNum(element){
 	if(tableState=="空闲"||tableState=="预约"){
 		$.ajax({
 			url:"/restaurant/waiter/takeTable",
-			data:{tableState:tableState,tableId:tableId},
+			data:{tableState:tableState,tableId:tableId,reserveId:reserveId},
 			type:"post",
 			success:function(msg){
 				console.log(msg);

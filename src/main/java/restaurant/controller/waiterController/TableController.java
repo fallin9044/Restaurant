@@ -27,22 +27,17 @@ public class TableController {
 		return waiterService.loadTableStatus(waiterTable,start);
 	}
 	
-	@ResponseBody
-	@RequestMapping("/waiter/exit")
-	public Object exitLogging(HttpSession session){
-		Map<String,Object> maps = new HashMap<>();
-		waiterService.exitLogging(session);
-		return maps;
-	}
+	
 	
 	@ResponseBody
 	@RequestMapping("/waiter/takeTable")
 	public Object takeTable(HttpSession session,
 			@RequestParam("tableState") String tableState,
-			@RequestParam("tableId") long tableId){
+			@RequestParam("tableId") long tableId,
+			@RequestParam("reserveId") long reserveId){
 		Map<String,Object> maps = new HashMap<>();
 		
-		if(waiterService.takeTable(tableId,tableState)){
+		if(waiterService.takeTable(tableId,tableState,reserveId)){
 			maps.put("flag", 1);
 		}else{
 			maps.put("flag", -1);
