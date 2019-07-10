@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,10 +34,31 @@
         
         <div class="sheet">
             <div class="title">
-                <h1>服务员名单</h1>
+                <h1>流水记录</h1>
+                <c:if test="${requestScope.detail == '-1' }">
                 <a href="?detail=今日"><button type="button" class="btn btn-default">今日</button></a>
                 <a href="?detail=最近一周"><button type="button" class="btn btn-default">最近一周</button></a>
                 <a href="?detail=最近一月"><button type="button" class="btn btn-default">最近一月</button></a>
+                <a href="?detail=-1"><button type="button" class="btn btn-info" >全部</button></a>
+                </c:if>
+                <c:if test="${requestScope.detail == '今日' }">
+                <a href="?detail=今日"><button type="button" class="btn btn-info">今日</button></a>
+                <a href="?detail=最近一周"><button type="button" class="btn btn-default">最近一周</button></a>
+                <a href="?detail=最近一月"><button type="button" class="btn btn-default">最近一月</button></a>
+                <a href="?detail=-1"><button type="button" class="btn btn-default" >全部</button></a>
+                </c:if>
+                <c:if test="${requestScope.detail == '最近一周' }">
+                <a href="?detail=今日"><button type="button" class="btn btn-default">今日</button></a>
+                <a href="?detail=最近一周"><button type="button" class="btn btn-info">最近一周</button></a>
+                <a href="?detail=最近一月"><button type="button" class="btn btn-default">最近一月</button></a>
+                <a href="?detail=-1"><button type="button" class="btn btn-default" >全部</button></a>
+                </c:if>
+                <c:if test="${requestScope.detail == '最近一月' }">
+                <a href="?detail=今日"><button type="button" class="btn btn-default">今日</button></a>
+                <a href="?detail=最近一周"><button type="button" class="btn btn-default">最近一周</button></a>
+                <a href="?detail=最近一月"><button type="button" class="btn btn-info">最近一月</button></a>
+                <a href="?detail=-1"><button type="button" class="btn btn-default" >全部</button></a>
+                </c:if>
             </div>
             
             <div>
@@ -56,7 +78,7 @@
 							<td>${order.orderId}</td>
 							<td>${order.personId}</td>
 							<td>${order.tableId}</td>
-							<td>${order.orderTime}</td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${order.orderTime}" /></td>
 							<td>${order.total}</td>
 						</tr>
 					</c:forEach>

@@ -54,7 +54,8 @@
 					<tr>
 						<td>${person.id}</td>
 						<td>${person.personName}</td>
-						<td>${person.sex}</td>
+						<c:if test="${person.sex=='1'}" ><td>男</td></c:if>
+						<c:if test="${person.sex=='0'}" ><td>女</td></c:if>
 						<td>${person.personTele}</td>
 
 						<td><button type="button" class="btn btn-default" onclick="edit1(${person.id})">
@@ -109,7 +110,7 @@
 			data:{personId:id},
 			type:"post",
 		});
-
+		
 		window.location.href = "/restaurant/managerIndex"
 	};
 	

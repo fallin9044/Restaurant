@@ -55,6 +55,11 @@ public class AddWaiterController {
 			return maps;
 		}
 
-	
+		@ResponseBody
+		@RequestMapping("/deleteWaiter")
+		public Object deleteWaiter(HttpSession session,@RequestParam(value="personId") long personId){		
+			managerService.deleteWaiter(personId);;
+			return null;
+		}
 
 }
