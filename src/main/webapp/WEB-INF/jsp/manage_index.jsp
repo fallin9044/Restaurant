@@ -109,9 +109,15 @@
 			url:"/restaurant/deleteWaiter",
 			data:{personId:id},
 			type:"post",
+			success:function(mas){
+				if(mas=="success"){
+					alert("删除成功");
+					window.location.href = "/restaurant/managerIndex"
+				}
+				else alert("删除失败");
+			}
 		});
 		
-		window.location.href = "/restaurant/managerIndex"
 	};
 	
 

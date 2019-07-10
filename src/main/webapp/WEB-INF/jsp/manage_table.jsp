@@ -36,7 +36,7 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">添加餐桌</h4>
+						<h4 class="modal-title" id="myModalLabel" style="margin-left:29%">添加餐桌</h4>
 					</div>
 					<div class="modal-body" style="height: 60px">
 
@@ -63,9 +63,9 @@
 			<div class="title">
 				<h1>餐桌列表</h1>
 				<button id="addW_btn" type="button" class="btn btn-default"
-					data-toggle="modal" data-target="#addTable" style="margin-left:20%;">添加餐桌</button>
+					data-toggle="modal" data-target="#addTable" style="margin-left:29%;">添加餐桌</button>
 					<div style="float:right">
-					<p style="font-size:18px;">按时间查询可预约餐桌</p>
+					<p style="font-size:17px;">按时间查询可预约餐桌</p>
 					<input type="datetime-local" id="searchTime"><button class="btn btn-default" onclick="searchTable()" style="height:30px">搜索</button>
 					</div>
 			</div>

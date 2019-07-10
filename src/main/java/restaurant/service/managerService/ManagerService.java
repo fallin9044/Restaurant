@@ -173,6 +173,7 @@ public class ManagerService {
 	 * @param start
 	 * @return
 	 */
+	@Transactional
 	public Object loadDish(String managedish,int start) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		List<Dish> dishForm = new ArrayList<>();
@@ -355,7 +356,7 @@ public class ManagerService {
 			}else {
 				sexnum = 0;
 			}
-			List<Person> persons= personDAO.findIsRepeat(name, telephone);
+			List<Person> persons= personDAO.findIsRepeat(telephone);
 			//验证是否重复添加
 			if(persons==null||persons.size()==0) {
 				flag = 1;
@@ -427,9 +428,9 @@ public class ManagerService {
 			}else {
 				sexnum = 0;
 			}
-			List<Person> persons= personDAO.findIsRepeatx(name,sexnum,telephone,password);
+			List<Person> persons= personDAO.findIsRepeatx(telephone);
 			//验证是否重复添加
-			if(persons==null||persons.size()==0) {
+			if(persons.size()<1) {
 				flag = 1;
 				personDAO.editinfo(id, name, sexnum, telephone, password);;
 				
@@ -445,8 +446,11 @@ public class ManagerService {
 		return flag;
 		
 	}
+	
+	@Transactional
 	public Object loadTables(String root) {
 		Map<String,Object> map= new HashMap<String, Object>();
+		reservesDAO.deleteOverTimeReserve();
 		List<Dining> tablesDinings=diningDAO.findAll();
 		map.put("tables", tablesDinings);
 		return 	WebUtils.setModelAndView(root, map);
@@ -473,10 +477,11 @@ public class ManagerService {
 	}
 	
 
-
+	@Transactional
 	public Object loadReserves(String managereserve, long tableId) {
 		Map<String,Object> map= new HashMap<String, Object>();
 		List<Reserves> reserves=reservesDAO.findByTableId(tableId);
+		reservesDAO.deleteOverTimeReserve();
 		map.put("reserves",reserves );
 		map.put("tableId", tableId);
 		return WebUtils.setModelAndView(managereserve, map);
@@ -494,6 +499,7 @@ public class ManagerService {
 			List<Dining> tabs = diningDAO.isAbleReserve(tableId,reserveTime);
 			if(tabs.size()>0)return 0;
 			reservesDAO.saveAndFlush(new Reserves(tableId, timestamp, tele));
+			diningDAO.takeTableWithReserve(tableId);
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return 0;
@@ -504,17 +510,23 @@ public class ManagerService {
 	@Transactional
 	public Object deleteReserve(long id) {
 		try{
+			long tableId=reservesDAO.findById(id).get().getTableId();
 			reservesDAO.deleteById(id);
+			if(reservesDAO.findByTableId(tableId).size()==0) {
+				diningDAO.releaseTableWithNoReserve(tableId);
+			}
 		}catch(Exception e) {
 			return 0;
 		}
 		return 1;
 	}
-
+	
+	@Transactional
 	public Object loadSearchedTable(String managereserve, String time) {
 		SimpleDateFormat x=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		List<Dining> tablesDinings=diningDAO.findAll();
 		List<Dining> tablesres=new ArrayList<Dining>();
+		reservesDAO.deleteOverTimeReserve();
 		Date date;
 		Map<String,Object> map= new HashMap<String, Object>();
 		try {
