@@ -102,16 +102,19 @@
 
 		<div id="right_mid" class=" col-md-12 col-sm-12">
 				<c:forEach items="${requestScope.dishes}" var="dish">
-					<div id="menu_item" > <img height="154.5" width="250"
-							src="/restaurant/dishImages/${dish.dishPicture}.jpg" />
-						
-						<div style="float: left;padding-top:8px;"><span style="font-weight: 900">${dish.dishName}(￥${dish.dishPrice})</span></div>
-						<button type="button" class="btn btn-danger" style="margin-right:4px;border-radius: 22px;width: 34px;height: 34px;"
+					<div id="menu_item" style="position:relative" > 
+						<img height="154.5" width="250" src="/restaurant/dishImages/${dish.dishPicture}.jpg" />
+						<div style="float: left;padding-top:8px;">						
+						<c:if test="${dish.isrecommend == '1'}">
+						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+						</c:if>
+						<span style="font-weight: 900">${dish.dishName}(￥${dish.dishPrice})</span></div>
+						<button type="button" class="btn btn-danger" style="margin-right:4px;margin-top:2px;border-radius: 22px;width: 34px;height: 34px;"
 						onclick="dishMinus(${dish.dishId})">
 						<span>-</span>
 						</button>
 						<span id="${dish.dishId}" class="countDish"  name="${dish.dishName}">0</span>
-						<button type="button" class="btn btn-danger" style="margin-left:4px;border-radius: 22px;width: 34px;height: 34px;"
+						<button type="button" class="btn btn-danger" style="margin-left:4px;margin-top:2px;border-radius: 22px;width: 34px;height: 34px;"
 						onclick="dishPlus(${dish.dishId})">
 							<span>+</span>
 						</button>

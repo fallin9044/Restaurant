@@ -44,7 +44,6 @@
                         <th style="text-align: center;">菜品ID</th>
                         <th style="text-align: center;">菜名</th>
                         <th style="text-align: center;">价格</th>
-                        <th style="text-align: center;">描述</th>
                         <th style="text-align: center;">是否推荐</th>
                     </tr>
                 </thead>
@@ -54,7 +53,6 @@
 							<td>${dish.dishId}</td>
 							<td>${dish.dishName}</td>
 							<td>${dish.dishPrice}</td>
-							<td>${dish.dishDesc}</td>
 							<td>${dish.isrecommend}</td>
 							<td><button type="button" class="btn btn-default" onclick="edit('${dish.dishName}')">
 							edit</button>

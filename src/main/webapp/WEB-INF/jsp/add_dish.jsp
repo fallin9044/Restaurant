@@ -49,13 +49,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="description" class="col-sm-3 control-label">菜品简介</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="desc"
-                                 placeholder="请输入菜品简介">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="inputPassword" class="col-sm-3 control-label">菜品图片</label>
                         <div class="col-sm-6">
                             <input type="file" id="picture" name="file">
@@ -119,10 +112,6 @@ $("#waiter_exit_btn").click(function(){
 			alert("请输入有效的价格！");
 			return;
 		}
-		if(desc==""||desc==null){
-			alert("请输入菜品描述！");
-			return;
-		}
 		if(picture==null){
 			alert("请上传菜品图片！");
 			return;
@@ -140,7 +129,7 @@ $("#waiter_exit_btn").click(function(){
 		var formdata = new FormData();
 		formdata.append("dishName", name);
 		formdata.append("dishPrice",price);
-		formdata.append("dishDesc",desc);
+		formdata.append("dishDesc",'');
 		formdata.append("dishPicture", pictureName);
 		formdata.append("isrecommend", recommend);
 		formdata.append("picture",picture);
