@@ -37,7 +37,7 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">添加餐桌</h4>
+						<h4 class="modal-title" id="myModalLabel">新的预约</h4>
 					</div>
 					<div class="modal-body" style="height: 60px">
 						<div class="col-lg-2 ">
