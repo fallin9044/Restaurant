@@ -237,6 +237,8 @@ public class ManagerService {
 		map.put("next", info[0]);
 		map.put("pre", info[1]);
 		map.put("last", info[2]);
+		map.put("count", info[3]);
+		map.put("total", info[4]);
 		map.put("orderStream", orderList);
 		map.put("detail", detail);
 		return WebUtils.setModelAndView("manage_order", map);
