@@ -66,14 +66,15 @@
                 </tbody>
             </table>
             <!-- 翻页 -->
-             <div align="center">
-				<ul class="pagination">
-					<li><a href="?start=0&detail=${requestScope.detail}">首 页</a></li>
-					<li><a href="?start=${requestScope.pre}&detail=${requestScope.detail}">上一页</a></li>
-					<li><a href="?start=${requestScope.next}&detail=${requestScope.detail}">下一页</a></li>
-					<li><a href="?start=${requestScope.last}&detail=${requestScope.detail}">末 页</a></li>
-				</ul>
-              </div> 
+			 <div align="center">
+                <ul class="pagination">
+                   <li><a href="?start=0">首页</a></li>
+                   <li><a href="?start=${requestScope.pre}">上一页</a></li>
+                   <li><a>${requestScope.count}/${requestScope.total}</a></li>
+                   <li><a href="?start=${requestScope.next}">下一页</a></li>
+                   <li><a href="?start=${requestScope.last}">末 页</a></li>
+                </ul>
+              </div>
             </div>
         </div>
         

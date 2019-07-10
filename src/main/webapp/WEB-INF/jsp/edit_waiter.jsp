@@ -65,7 +65,7 @@
                     </div>
                     <!-- 提交和重置按钮 -->
                     
-                     <button id="edit_waiter_btn" type="button" class="btn btn-success">Submit</button>
+                     <button id="edit_waiter_btn" type="button" class="btn btn-success">提交</button>
                     
                 </div>
             </div>

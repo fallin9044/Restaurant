@@ -184,7 +184,7 @@ public class ManagerService {
 		map.put("pre", info[1]);
 		map.put("last", info[2]);
 		map.put("count", info[3]);
-		map.put("total", info[4]+1);
+		map.put("total", info[4]);
 		map.put("dishStream", dishForm);
 		
 		return WebUtils.setModelAndView(managedish, map);
