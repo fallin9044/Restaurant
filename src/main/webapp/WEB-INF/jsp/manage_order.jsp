@@ -61,6 +61,13 @@
                 </c:if>
             </div>
             
+            <div style="text-align:right">
+            
+           		<h4>总收入：${requestScope.streamTotal}￥</h4>
+           
+           	</div>
+           	<br>
+            
             <div>
             <table class="table table-striped" style="text-align: center;">
                 <thead>
@@ -79,7 +86,7 @@
 							<td>${order.personId}</td>
 							<td>${order.tableId}</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${order.orderTime}" /></td>
-							<td>${order.total}</td>
+							<td>${order.total}￥</td>
 						</tr>
 					</c:forEach>
                 </tbody>
@@ -94,7 +101,8 @@
 					<li><a href="?start=${requestScope.next}&detail=${requestScope.detail}">下一页</a></li>
 					<li><a href="?start=${requestScope.last}&detail=${requestScope.detail}">末 页</a></li>
 				</ul>
-              </div> 
+              </div>
+              
             </div>
         </div>
         

@@ -232,8 +232,13 @@ public class ManagerService {
 		}else{
 			orders = orderStreamRepository.findAll();
 		}
+		int count = 0;
+		for(OrderStream os:orders){
+			count += os.getTotal();
+		}
 		WebUtils.getObjectList(orders, orderList, start, 5);
 		int[] info = WebUtils.getPagingInfo(start, 5, orders.size());
+		map.put("streamTotal", count);
 		map.put("next", info[0]);
 		map.put("pre", info[1]);
 		map.put("last", info[2]);
