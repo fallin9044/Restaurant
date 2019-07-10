@@ -422,9 +422,9 @@ public class ManagerService {
 			}else {
 				sexnum = 0;
 			}
-			List<Person> persons= personDAO.findIsRepeatx(name,sexnum,telephone,password);
+			List<Person> persons= personDAO.findIsRepeatx(name,telephone);
 			//验证是否重复添加
-			if(persons==null||persons.size()==0) {
+			if(persons.size()<2) {
 				flag = 1;
 				personDAO.editinfo(id, name, sexnum, telephone, password);;
 				

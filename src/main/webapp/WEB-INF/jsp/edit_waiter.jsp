@@ -124,6 +124,10 @@ $("#waiter_exit_btn").click(function(){
 			alert("您没有输入密码！");
 			return;
 		}
+		if(waitername=='${requestScope.person.personName}'&&sex=='${requestScope.sex}'&&telephone=='${requestScope.person.personTele}'&&password=='${requestScope.person.password}'){
+			alert("您未做任何修改！");
+			return;
+		}
 		
 		$.ajax({
 			url:"/restaurant/editSubmit",

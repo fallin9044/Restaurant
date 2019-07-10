@@ -131,6 +131,7 @@ $("#waiter_exit_btn").click(function(){
 			success:function(msg){
 				console.log(msg.isrepeat);
 				if (msg.isrepeat == 1) {
+					alert("添加成功！");
 					window.location.href = "/restaurant/managerIndex";
 				} else {
 					alert("该服务员已被注册！"); 

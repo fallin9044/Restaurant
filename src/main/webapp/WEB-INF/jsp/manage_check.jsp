@@ -55,8 +55,8 @@
 					<tr>
 					    <td>${person.id}</td>
 						<td>${person.personName}</td>
-						<c:if test="${ifAttending[loop.count-1] == '出勤'}"><td style="color:#64ec22">${ifAttending[loop.count-1]}</td></c:if>
-						<c:if test="${ifAttending[loop.count-1] == '缺勤'}"><td>${ifAttending[loop.count-1]}</td></c:if>
+						<c:if test="${ifAttending[loop.count-1] == '出勤'}"><td >${ifAttending[loop.count-1]}</td></c:if>
+						<c:if test="${ifAttending[loop.count-1] == '缺勤'}"><td style="color:red">${ifAttending[loop.count-1]}</td></c:if>
 						<td>${times[loop.count-1]}</td>
 					</tr>
 					</c:forEach>	

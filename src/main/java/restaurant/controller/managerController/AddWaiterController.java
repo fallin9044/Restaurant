@@ -46,8 +46,7 @@ public class AddWaiterController {
 				@RequestParam(value="sex") String sex,@RequestParam(value="telephone") String telephone,
 				@RequestParam(value="password") String password){
 			
-			System.out.println("dfadsfasdfsfsaf");
-			
+			System.out.println("dfadsfasdfsfsaf");			
 			Map<String,Object> maps = new HashMap<>();
 			int flag = managerService.addPerson(waitername, sex, telephone, password);
 			System.out.println(flag);
@@ -59,7 +58,7 @@ public class AddWaiterController {
 		@RequestMapping("/deleteWaiter")
 		public Object deleteWaiter(HttpSession session,@RequestParam(value="personId") long personId){		
 			managerService.deleteWaiter(personId);;
-			return null;
+			return "success";
 		}
 
 }
