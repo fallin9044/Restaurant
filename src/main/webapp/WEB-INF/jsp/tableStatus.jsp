@@ -16,16 +16,17 @@
 
     <div class="background" >
         
-        <div class="header" style="height:20%;text-align: center;font-size: 50px;">
+        <div class="header" style="height:8%;text-align: center;font-size: 30px;">
             顾客是上帝
-            <button type="submit" id="waiter_exit_btn">登出</button>
+            <a href="javascript:void(0)" id="waiter_exit_btn" style="float:right">登出</a>
         </div>
-        
-        <div class="mid-body" style="margin-top: 11%;">
+        <div align="center" style="margin-top: 10%">
+          <h3>餐桌状态</h3>
+        </div>
+        <div class="mid-body" style="margin-top: 2%;">
             <!-- 每天的签到表格  -->
 			<div class="sheet" style="margin-top: 1%;">
 				<table class="table table-striped">
-				<caption>餐桌状态</caption>
 				<thead>
 					<tr>
 						<th>编号</th>

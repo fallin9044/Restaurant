@@ -54,7 +54,8 @@
 					<tr>
 						<td>${person.id}</td>
 						<td>${person.personName}</td>
-						<td>${person.sex}</td>
+						<c:if test="${person.sex=='1'}" ><td>男</td></c:if>
+						<c:if test="${person.sex=='0'}" ><td>女</td></c:if>
 						<td>${person.personTele}</td>
 
 						<td><button type="button" class="btn btn-default" onclick="edit1(${person.id})">
@@ -108,9 +109,15 @@
 			url:"/restaurant/deleteWaiter",
 			data:{personId:id},
 			type:"post",
+			success:function(mas){
+				if(mas=="success"){
+					alert("删除成功");
+					window.location.href = "/restaurant/managerIndex"
+				}
+				else alert("删除失败");
+			}
 		});
-
-		window.location.href = "/restaurant/managerIndex"
+		
 	};
 	
 

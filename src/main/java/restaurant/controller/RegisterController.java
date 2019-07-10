@@ -27,7 +27,7 @@ public class RegisterController {
 	ManagerService managerService;
 	
 	private static final String registerPage = "register";
-	private static final String managerIndex = "redirect:manageIndex";
+	private static final String managerIndex = "redirect:managerIndex";
 	private static final String waiterTable = "redirect:waiter/tableStatus";
 	
 	@RequestMapping("/register")

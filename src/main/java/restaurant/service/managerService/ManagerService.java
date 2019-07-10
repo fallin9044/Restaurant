@@ -184,7 +184,7 @@ public class ManagerService {
 		map.put("pre", info[1]);
 		map.put("last", info[2]);
 		map.put("count", info[3]);
-		map.put("total", info[4]+1);
+		map.put("total", info[4]);
 		map.put("dishStream", dishForm);
 		
 		return WebUtils.setModelAndView(managedish, map);
@@ -237,6 +237,8 @@ public class ManagerService {
 		map.put("next", info[0]);
 		map.put("pre", info[1]);
 		map.put("last", info[2]);
+		map.put("count", info[3]);
+		map.put("total", info[4]);
 		map.put("orderStream", orderList);
 		map.put("detail", detail);
 		return WebUtils.setModelAndView("manage_order", map);
@@ -420,9 +422,9 @@ public class ManagerService {
 			}else {
 				sexnum = 0;
 			}
-			List<Person> persons= personDAO.findIsRepeatx(name,sexnum,telephone,password);
+			List<Person> persons= personDAO.findIsRepeatx(name,telephone);
 			//验证是否重复添加
-			if(persons==null||persons.size()==0) {
+			if(persons.size()<2) {
 				flag = 1;
 				personDAO.editinfo(id, name, sexnum, telephone, password);;
 				

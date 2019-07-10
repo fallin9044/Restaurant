@@ -17,10 +17,10 @@ public class PageValidationAOP {
 	private static final String registerPage = "redirect:/register";
 
 	@Pointcut("execution(* restaurant.controller.*.*.*(..))")
-	public void waiterControllerJointPointExpression() {
+	public void registerControllerJointPointExpression() {
 	}
 
-	@Around("waiterControllerJointPointExpression()")
+	@Around("registerControllerJointPointExpression()")
 	public Object pageAroundMethod(ProceedingJoinPoint pjd) {
 
 		Object result = null;
@@ -40,4 +40,5 @@ public class PageValidationAOP {
 
 		return result;
 	}
+	
 }

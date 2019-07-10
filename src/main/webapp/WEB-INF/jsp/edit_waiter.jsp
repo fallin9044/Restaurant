@@ -65,7 +65,7 @@
                     </div>
                     <!-- 提交和重置按钮 -->
                     
-                     <button id="edit_waiter_btn" type="button" class="btn btn-success">Submit</button>
+                     <button id="edit_waiter_btn" type="button" class="btn btn-success">提交</button>
                     
                 </div>
             </div>
@@ -122,6 +122,10 @@ $("#waiter_exit_btn").click(function(){
 		}
 		if(password==null||password==''){
 			alert("您没有输入密码！");
+			return;
+		}
+		if(waitername=='${requestScope.person.personName}'&&sex=='${requestScope.sex}'&&telephone=='${requestScope.person.personTele}'&&password=='${requestScope.person.password}'){
+			alert("您未做任何修改！");
 			return;
 		}
 		
