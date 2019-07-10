@@ -18,7 +18,7 @@
         
         <div class="header" style="height:8%;text-align: center;font-size: 30px;">
             顾客是上帝
-            <a href=":javascript:void(0)" id="waiter_exit_btn" style="float:right">登出</a>
+            <a href="javascript:void(0)" id="waiter_exit_btn" style="float:right">登出</a>
         </div>
         <div align="center" style="margin-top: 10%">
           <h3>餐桌状态</h3>
