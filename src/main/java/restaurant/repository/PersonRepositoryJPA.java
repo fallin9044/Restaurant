@@ -18,11 +18,11 @@ public interface PersonRepositoryJPA extends JpaRepository<Person, Long> {
 	@Query(value = "select b from Person b where b.authority = 2 and b.personState = 1")
 	public List<Person> findByAuthority();
 	
-	@Query(value = "select b from Person b where b.personName=:name and b.personTele=:telephone")
-	public List<Person> findIsRepeat(@Param("name") String name, @Param("telephone") String telephone);
+	@Query(value = "select b from Person b where  b.personTele=:telephone")
+	public List<Person> findIsRepeat( @Param("telephone") String telephone);
 	
-	@Query(value = "select b from Person b where b.personName=:name or b.personTele=:telephone")
-	public List<Person> findIsRepeatx(@Param("name") String name,@Param("telephone") String telephone);
+	@Query(value = "select b from Person b where b.personTele=:telephone")
+	public List<Person> findIsRepeatx(@Param("telephone") String telephone);
 
 	@Modifying
 	@Query(value = "update Person b set b.personState=1 where b.id = :id")

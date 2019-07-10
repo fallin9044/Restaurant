@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="/restaurant/css/main.css">
 <link rel="stylesheet" href="/restaurant/css/bootstrap.min.css">
-
+	<script src="/restaurant/js/jquery-3.4.1.min.js"></script>
 <script src="/restaurant/js/bootstrap.min.js"></script>
 </head>
 
