@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import restaurant.service.waiterService.WaiterService;
+import restaurant.service.waiterService.OrderDishService;
 
 @Controller
 public class OrderDishController {
 	
 	@Autowired
-	WaiterService waiterService;
+	OrderDishService waiterService;
 	
 	@RequestMapping("/waiter/orderDish")
 	public Object showTableStatus(HttpSession session,@RequestParam(value = "tableId",required = false, defaultValue = "1") long tableId){

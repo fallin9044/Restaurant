@@ -142,6 +142,11 @@ function addReserve(){
 		alert("您没有输入手机号！");
 		return;
 	}
+	var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+	if(tele.length!=11||!myreg.test(tele)){
+		alert("请输入11位有效手机号")
+		return
+	}
 	$.ajax({
 		url:"/restaurant/manage/addReserve",
 		data:{time:time,tele:tele,tableId:tableId},

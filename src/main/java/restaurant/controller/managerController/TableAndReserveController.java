@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import restaurant.service.managerService.ManagerService;
+import restaurant.service.managerService.TableAndReserveService;
 
 @Controller
-public class ReserveController {
+public class TableAndReserveController {
 	
 	@Autowired
-	ManagerService managerService;
+	TableAndReserveService managerService;
 
 	private static final String manageTable = "manage_table";
 	private static final String manageReserve = "manage_reserve";

@@ -104,7 +104,7 @@
 	};
 	
 	function delete1(id){
-		
+		if(window.confirm('确认要删除吗？')){
 		$.ajax({
 			url:"/restaurant/deleteWaiter",
 			data:{personId:id},
@@ -117,7 +117,7 @@
 				else alert("删除失败");
 			}
 		});
-		
+		}
 	};
 	
 

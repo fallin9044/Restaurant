@@ -109,6 +109,7 @@ $("#waiter_exit_btn").click(function(){
 	};
 	
 	function delete1(dishId){
+		if(window.confirm('确认要删除吗？')){
 		$.ajax({
 			url:"/restaurant/deleteDish",
 			data:{dishId:dishId},
@@ -118,6 +119,7 @@ $("#waiter_exit_btn").click(function(){
 				window.location.href = "/restaurant/manageDish?start=0"
 			}
 		});
+		}
 	};
 	
 	function changeRecommend(dishId)

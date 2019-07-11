@@ -124,11 +124,21 @@ $("#waiter_exit_btn").click(function(){
 			alert("您没有输入密码！");
 			return;
 		}
+
+		
 		if(waitername=='${requestScope.person.personName}'&&sex=='${requestScope.sex}'&&telephone=='${requestScope.person.personTele}'&&password=='${requestScope.person.password}'){
 			alert("您未做任何修改！");
 			return;
 		}
-		
+		var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+		if(telephone.length!=11||!myreg.test(telephone)){
+			alert("请输入11位有效手机号")
+			return
+		}
+		if(!/^[a-zA-Z0-9]{8,16}$/.test(password)){
+			alert("请输入8-16位字母或数字")
+			return
+		}
 		$.ajax({
 			url:"/restaurant/editSubmit",
 			data:{waiterid:waiterid,waitername:waitername,sex:sex,telephone:telephone,password:password},

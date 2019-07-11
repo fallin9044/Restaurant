@@ -60,7 +60,7 @@
                         <label for="inputPassword" class="col-sm-3 control-label">密码</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="password"
-                                placeholder="密码不少于八位">
+                                placeholder="请输入8-16位字母或数字">
                         </div>
                     </div>
                     <!-- 提交和重置按钮 -->
@@ -102,7 +102,7 @@ $("#waiter_exit_btn").click(function(){
 		var sex = $("#sex").val();
 		var telephone = $("#telephone").val();
 		var password = $("#password").val();
-		
+
 		if(waitername==null||waitername==''){
 			alert("您没有输入姓名！");
 			return;
@@ -122,6 +122,16 @@ $("#waiter_exit_btn").click(function(){
 		if(password==null||password==''){
 			alert("您没有输入密码！");
 			return;
+		}
+		var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+		if(telephone.length!=11||!myreg.test(telephone)){
+			alert("请输入11位有效手机号")
+			return
+		}
+		
+		if(!/^[a-zA-Z0-9]{8,16}$/.test(password)){
+			alert("请输入8-16位字母或数字")
+			return
 		}
 		
 		$.ajax({

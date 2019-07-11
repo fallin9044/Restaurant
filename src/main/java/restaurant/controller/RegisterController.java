@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import restaurant.service.LoggingValidationService;
-import restaurant.service.managerService.ManagerService;
-import restaurant.service.waiterService.WaiterService;
+import restaurant.service.waiterService.TableStatusService;
 import restaurant.utils.WebUtils;
 
 @Controller
@@ -22,9 +21,8 @@ public class RegisterController {
 	@Autowired
 	private LoggingValidationService loggingValidationService;
 	@Autowired
-	WaiterService waiterService;
-	@Autowired
-	ManagerService managerService;
+	TableStatusService waiterService;
+
 	
 	private static final String registerPage = "register";
 	private static final String managerIndex = "redirect:managerIndex";

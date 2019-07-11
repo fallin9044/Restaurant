@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import restaurant.entity.Dish;
-import restaurant.service.managerService.ManagerService;
+import restaurant.service.managerService.DishManageService;
 
 /***
  * 
@@ -34,7 +34,7 @@ public class DishController {
 	private static final String editDishPage = "edit_dish";
 	
 	@Autowired
-	ManagerService managerService;
+	DishManageService managerService;
 	
 	@RequestMapping("/manageDish")
 	public Object manageDish(HttpSession session,@RequestParam(value = "start",defaultValue = "0")int start){

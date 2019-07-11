@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import restaurant.service.waiterService.WaiterService;
+import restaurant.service.waiterService.TableStatusService;
 
 @Controller
 public class TableController {
 
 	@Autowired
-	WaiterService waiterService;
+	TableStatusService waiterService;
 	
 	private static final String waiterTable = "tableStatus";
 	

@@ -33,7 +33,7 @@ import restaurant.repository.ReservesRepository;
 import restaurant.utils.WebUtils;
 
 @Service
-public class WaiterService {
+public class TableStatusService {
 
 	@Autowired
 	DiningRepository diningDAO;
@@ -75,7 +75,7 @@ public class WaiterService {
 		getFirstReserve(reserves, reservesList, diningList);
 		map.put("reserves", reservesList);
 
-		System.out.println("你好好好好好");
+
 		return WebUtils.setModelAndView(waiterPage, map);
 	}
 	public  void getFirstReserve(List<Reserves> org, List<Reserves> target,List<Dining> diningList) {
@@ -114,13 +114,6 @@ public class WaiterService {
 			}
 		}
 	}
-	public Object loadOrderDish(Long tableId) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("existingMenu", menuRepository.findByTableId(tableId));
-		map.put("dishes", dishRepository.findAll());
-		map.put("tableId", tableId);
-		return WebUtils.setModelAndView("orderDish", map);
-	}
 
 	@Transactional
 	public void exitLogging(HttpSession session) {
@@ -142,64 +135,5 @@ public class WaiterService {
 		}
 	}
 
-	@Transactional
-	public String addMenu(String menus) {
-		try {
-			JSONArray jsons = JSON.parseArray(menus);
-			Menu menu;
-			for (int i = 0; i < jsons.size(); i++) {
-				menu = jsons.getObject(i, Menu.class);
-				List<Menu> res = menuRepository.findByTableIdAndDishId(menu.getTableId(), menu.getDishId());
-				if (res.size() > 0) {
-					Menu menu2 = res.get(0);
-					menu2.setDishNumber(menu2.getDishNumber() + menu.getDishNumber());
-					menu2.setDishState(0);
-					menuRepository.saveAndFlush(menu2);
-				} else {
-					menuRepository.saveAndFlush(menu);
-				}
-			}
 
-		} catch (Exception e) {
-			return "failed";
-		}
-		return "success";
-	}
-
-	@Transactional
-	public String settleAccount(HttpSession session, long tableId, int total) {
-		try {
-			Timestamp now = new Timestamp(System.currentTimeMillis());
-			diningDAO.releaseTable(tableId);
-			OrderStream orderStream = new OrderStream(0, (Long) session.getAttribute("personId"), total, now, tableId);
-			menuRepository.deleteByTableId(tableId);
-			if(reservesRepository.findByTableId(tableId).size()>0) diningDAO.takeTableWithReserve(tableId);
-			orderStreamRepository.saveAndFlush(orderStream);
-		} catch (Exception e) {
-			return "failed";
-		}
-		return "success";
-	}
-
-	@Transactional
-	public Object changeMenuState(long menuId) {
-		try {
-			menuRepository.changeMenuState(menuId, 1);
-		} catch (Exception e) {
-			return "failed";
-		}
-		return "success";
-	}
-	
-	@Transactional
-	public Object houHui(HttpSession session, long tableId) {
-		try {
-			if(reservesRepository.findByTableId(tableId).size()>0) diningDAO.releaseTableWithReserve(tableId);
-			else diningDAO.releaseTable(tableId);
-
-		} catch (Exception e) {
-			return "failed";
-		}
-		return "success";
-	}
 }

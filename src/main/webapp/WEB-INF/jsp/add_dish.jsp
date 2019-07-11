@@ -51,7 +51,7 @@
                     <div class="form-group">
                         <label for="inputPassword" class="col-sm-3 control-label">菜品图片(1M以内)</label>
                         <div class="col-sm-6">
-                            <input type="file" id="picture" name="file">
+                            <input type="file" id="picture" name="file" accept="image/jpg, image/jpeg">
                         </div>
                     </div>
                     <div class="form-group">
@@ -115,6 +115,10 @@ $("#waiter_exit_btn").click(function(){
 		if(picture==null){
 			alert("请上传菜品图片！");
 			return;
+		}
+		if((picture.size/1024).toFixed(0)>1024){
+			alert("图片过大，请重新上传")
+			return
 		}
 		if(recommend!="是"&&recommend!="否"){
 			alert("请输入菜品是/否被推荐！");
