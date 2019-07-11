@@ -6,8 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
+import org.hibernate.jpa.HibernateEntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -48,6 +52,9 @@ public class WaiterService {
 
 	@Autowired
 	ReservesRepository reservesRepository;
+	
+	@PersistenceContext
+	EntityManager entityManager;
 
 	@Transactional
 	public Object loadTableStatus(String waiterPage, int start) {
@@ -65,11 +72,48 @@ public class WaiterService {
 		map.put("tablestatus", diningList);
 		List<Reserves> reserves = reservesRepository.twoHourInterval();
 		List<Reserves> reservesList = new ArrayList<>();
-		WebUtils.getFirstReserve(reserves, reservesList, diningList);
+		getFirstReserve(reserves, reservesList, diningList);
 		map.put("reserves", reservesList);
+
+		System.out.println("你好好好好好");
 		return WebUtils.setModelAndView(waiterPage, map);
 	}
-
+	public  void getFirstReserve(List<Reserves> org, List<Reserves> target,List<Dining> diningList) {
+		Map<Long, Integer> tmp = new HashMap<>();
+		Integer index = 0;
+		for (Reserves res : org) {
+			if (tmp.get(res.getTableId()) == null) {
+				tmp.put(res.getTableId(), index);
+			} else {
+				Reserves temp = org.get(tmp.get(res.getTableId()));
+				if (res.getReserveTime().before(temp.getReserveTime())) {
+					tmp.replace(res.getTableId(), index);
+				}
+			}
+			index++;
+		}
+		for (Long key : tmp.keySet()) {
+			index = tmp.get(key);
+			target.add(org.get(index));
+		}
+		
+		for(Dining din:diningList){
+			if(din.getTableState()==1){
+				int flag = 0;
+				for(Reserves res:target){
+					if(res.getTableId()==din.getTableId()){
+						flag = 1;
+					}
+				}
+				if(flag == 0){
+					din.setTableState(0); 
+					HibernateEntityManager hi=(HibernateEntityManager)entityManager;
+					Session session = hi.getSession();
+					session.evict(din);
+				}
+			}
+		}
+	}
 	public Object loadOrderDish(Long tableId) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("existingMenu", menuRepository.findByTableId(tableId));
@@ -129,10 +173,7 @@ public class WaiterService {
 			diningDAO.releaseTable(tableId);
 			OrderStream orderStream = new OrderStream(0, (Long) session.getAttribute("personId"), total, now, tableId);
 			menuRepository.deleteByTableId(tableId);
-			if(reservesRepository.findByTableId(tableId).size()==0) {
-				diningDAO.releaseTableWithNoReserve(tableId);
-			}else diningDAO.takeTableWithReserve(tableId);
-
+			if(reservesRepository.findByTableId(tableId).size()>0) diningDAO.takeTableWithReserve(tableId);
 			orderStreamRepository.saveAndFlush(orderStream);
 		} catch (Exception e) {
 			return "failed";
@@ -153,11 +194,9 @@ public class WaiterService {
 	@Transactional
 	public Object houHui(HttpSession session, long tableId) {
 		try {
-			System.out.println(tableId);
-			diningDAO.releaseTable(tableId);
-			if(reservesRepository.findByTableId(tableId).size()==0) {
-				diningDAO.releaseTableWithNoReserve(tableId);
-			}else diningDAO.takeTableWithReserve(tableId);
+			if(reservesRepository.findByTableId(tableId).size()>0) diningDAO.releaseTableWithReserve(tableId);
+			else diningDAO.releaseTable(tableId);
+
 		} catch (Exception e) {
 			return "failed";
 		}

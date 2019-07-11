@@ -29,6 +29,10 @@ public interface DiningRepositoryJPA extends JpaRepository<Dining, Long> {
 	@Query(value = "update Dining b set b.tableState=1 where b.tableId = :id")
 	public void takeTableWithReserve(@Param("id") long id);
 	
+	@Modifying
+	@Query(value = "update Dining b set b.tableState=1 , b.startTime=NULL where b.tableId = :id")
+	public void releaseTableWithReserve(@Param("id") long id);
+	
 	@Query(value = "select * from dining where table_id = :tableId and (start_time = null or date_sub(:time,INTERVAL 2 HOUR) < start_time)" ,nativeQuery = true)
 	List<Dining> isAbleReserve(@Param("tableId")long tableId, @Param(value = "time")Date reserveTime);
 	

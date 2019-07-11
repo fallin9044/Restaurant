@@ -150,8 +150,14 @@ function addReserve(){
 			if (msg == 1) {
 				alert("添加预约成功！"); 
 				location.reload();
-			} else {
-				alert("操作失败，请检查时间是否冲突！"); 
+			} else if (msg == 0){
+				alert("与该餐桌就餐时间过于靠近"); 
+			}  else if (msg == 2){
+				alert("与该餐桌其他预约时间冲突"); 
+			} else if (msg == -1){
+				alert("只能预约未来的时间"); 
+			} else{
+				alert("操作失败，请重试"); 
 			} 
 		},
 		error:function(XMLHttpRequest, textStatus, errorThrown) {

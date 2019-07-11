@@ -1,17 +1,16 @@
 package restaurant.utils;
 
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.web.servlet.ModelAndView;
 
-import restaurant.entity.Dining;
-import restaurant.entity.Reserves;
+
 
 public class WebUtils {
+	
+
 
 	public static <T> void getObjectList(List<T> org, List<T> target, int start, int count) {
 		for (int i = start; i < start + count && i < org.size(); i++) {
@@ -19,39 +18,7 @@ public class WebUtils {
 		}
 	}
 
-	public static void getFirstReserve(List<Reserves> org, List<Reserves> target,List<Dining> diningList) {
-		Map<Long, Integer> tmp = new HashMap<>();
-		Integer index = 0;
-		for (Reserves res : org) {
-			if (tmp.get(res.getTableId()) == null) {
-				tmp.put(res.getTableId(), index);
-			} else {
-				Reserves temp = org.get(tmp.get(res.getTableId()));
-				if (res.getReserveTime().before(temp.getReserveTime())) {
-					tmp.replace(res.getTableId(), index);
-				}
-			}
-			index++;
-		}
-		for (Long key : tmp.keySet()) {
-			index = tmp.get(key);
-			target.add(org.get(index));
-		}
-		
-		for(Dining din:diningList){
-			if(din.getTableState()==1){
-				int flag = 0;
-				for(Reserves res:target){
-					if(res.getTableId()==din.getTableId()){
-						flag = 1;
-					}
-				}
-				if(flag == 0){
-					din.setTableState(0);
-				}
-			}
-		}
-	}
+	
 
 	/**
 	 * 对页码进行操作

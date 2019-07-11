@@ -68,6 +68,7 @@ public class Dining implements Serializable {
 		this.tableState = tableState;
 	}
 
+	
 	public Timestamp getStartTime() {
 		return startTime;
 	}
@@ -75,5 +76,7 @@ public class Dining implements Serializable {
 	public void setStartTime(Timestamp startTime) {
 		this.startTime = startTime;
 	}
+
+
 
 }
