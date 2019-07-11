@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword" class="col-sm-3 control-label">菜品图片</label>
+                        <label for="inputPassword" class="col-sm-3 control-label">菜品图片(1M以内)</label>
                         <div class="col-sm-6">
                             <input type="file" id="picture" name="file">
                         </div>

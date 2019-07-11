@@ -28,13 +28,13 @@
 				$('.demoo').bgStretcher(
 						{
 
-							images : [ '/restaurant/images/banner1.jpg',
-									'/restaurant/images/banner2.jpg',
-									'/restaurant/images/banner3.jpg' ],
+							images : [ '/restaurant/images/b-chihuo.jpg',
+									'/restaurant/images/b-jingzhi.jpg',
+									'/restaurant/images/b-kouwei.jpg' ],
 
 							imageWidth : 800,
 
-							imageHeight : 135,
+							imageHeight :135,
 
 							slideDirection : 'N',
 
@@ -62,7 +62,7 @@
 		<div id="left_bottom"
 			class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10">
 				<a href="/restaurant/waiter/tableStatus"><返回</a>
-	<figure class="tabBlock" style="margin-top:30px">
+	<figure class="tabBlock" style="margin-top:20px">
 	<div class="tabBlock-tabs" >
     <div class="tabBlock-tab is-active" style="float:left">已点菜品</div>
     <div class="tabBlock-tab" style="float:left">在选菜品</div>

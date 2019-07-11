@@ -40,7 +40,7 @@
             <table class="table table-striped" style="text-align: center;">
                 <thead>
                     <tr>
-                        <th style="text-align: center;">服务员ID</th>
+                        <th style="text-align: center;">服务员编号</th>
                         <th style="text-align: center;">姓名</th>
                         <th style="text-align: center;">性别</th>
                         <th style="text-align: center;">电话</th>

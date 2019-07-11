@@ -74,7 +74,7 @@
                 <thead>
                     <tr>
                         <th style="text-align: center;">订单ID</th>
-                        <th style="text-align: center;">服务员名字</th>
+                        <th style="text-align: center;">服务员编号</th>
                         <th style="text-align: center;">桌号</th>
                         <th style="text-align: center;">日期/时间</th>
                         <th style="text-align: center;">花销</th>
